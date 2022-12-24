@@ -18,6 +18,7 @@ class TokenAuthenticator @Inject constructor(
     }
 
     private fun getUpdateToken(): String {
+        //TODO api new token
         return ""
     }
 

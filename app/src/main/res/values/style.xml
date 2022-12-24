@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="OutlinedTextField" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusBottomEnd">@dimen/margin_component</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/margin_component</item>
+        <item name="boxCornerRadiusTopStart">@dimen/margin_component</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/margin_component</item>
+    </style>
+
+    <style name="FabShapeStyle" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerSize">@dimen/margin_component</item>
+        <item name="backgroundColor">#fff</item>
+    </style>
+
+    <style name="CircleImageView" parent="Theme.MaterialComponents.Light">
+        <item name="cornerSize">50%</item>
+        <item name="tint">@color/white</item>
+    </style>
+
+    <style name="MaterialGitaBankButton" parent="TextAppearance.MaterialComponents.Button">
+        <item name="cornerSize">@dimen/margin_component</item>
+    </style>
+
+</resources>

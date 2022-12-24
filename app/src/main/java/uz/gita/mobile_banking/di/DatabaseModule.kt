@@ -14,6 +14,7 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import uz.gita.mobile_banking.BuildConfig
+import uz.gita.mobile_banking.data.local.prefs.MySharedPrefs
 import uz.gita.mobile_banking.data.remote.authenticator.TokenAuthenticator
 import javax.inject.Singleton
 
@@ -35,15 +36,26 @@ object DatabaseModule {
     fun provideGson(): Gson = GsonBuilder().setLenient().create()
 
     @[Provides Singleton]
-    fun provideClient(@ApplicationContext ctx: Context): OkHttpClient = OkHttpClient.Builder()
+    fun provideClient(
+        @ApplicationContext ctx: Context,
+        mySharedPrefs: MySharedPrefs
+    ): OkHttpClient = OkHttpClient.Builder()
         .addInterceptor(ChuckerInterceptor.Builder(ctx).build())
+        .addInterceptor { chain ->
+            val requestBuilder = chain.request().newBuilder()
+            if (mySharedPrefs.refreshToken.isNotEmpty())
+                requestBuilder.addHeader("token", "")
+            val response = chain.proceed(requestBuilder.build())
+            response
+        }
         .authenticator(TokenAuthenticator())
         .build()
 
 
     @[Provides Singleton]
-    fun provideRetrofit(): Retrofit = Retrofit.Builder()
+    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
         .baseUrl(BuildConfig.BASE_URL)
+        .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 

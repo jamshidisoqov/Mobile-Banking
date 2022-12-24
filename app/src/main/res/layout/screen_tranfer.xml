@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/action_bar_container"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/margin_std"
+            android:padding="@dimen/margin_std"
+            android:src="@drawable/ic_back" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/transfer_money"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/_tv_card_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_component"
+        android:layout_marginTop="@dimen/margin_extra_large"
+        android:text="@string/amount"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/action_bar_container"
+        app:layout_constraintTop_toBottomOf="@id/action_bar_container" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/input_amount"
+        android:layout_width="0dp"
+        android:layout_height="?actionBarSize"
+        android:layout_marginHorizontal="@dimen/margin_component"
+        android:layout_marginTop="@dimen/margin_std"
+        android:background="@drawable/bg_text_field"
+        android:hint="@string/enter_amount"
+        android:inputType="number"
+        android:paddingHorizontal="@dimen/margin_component"
+        app:layout_constraintEnd_toEndOf="@id/action_bar_container"
+        app:layout_constraintStart_toStartOf="@id/action_bar_container"
+        app:layout_constraintTop_toBottomOf="@id/_tv_card_name" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/_tv_selected_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_component"
+        android:layout_marginTop="@dimen/margin_extra_large"
+        android:text="@string/selected_card"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/input_amount" />
+
+
+    <com.jackandphantom.carouselrecyclerview.CarouselRecyclerview
+        android:id="@+id/list_cards"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_small"
+        android:layout_marginTop="@dimen/margin_component"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/_tv_selected_card"
+        tools:listitem="@layout/list_item_cards" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/_tv_send_to"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_component"
+        android:layout_marginTop="@dimen/margin_component"
+        android:text="@string/send_to"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/list_cards" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/input_send_to"
+        android:layout_width="0dp"
+        android:layout_height="?actionBarSize"
+        android:layout_marginHorizontal="@dimen/margin_component"
+        android:layout_marginTop="@dimen/margin_std"
+        android:background="@drawable/bg_text_field"
+        android:backgroundTint="@color/white"
+        android:drawableEnd="@drawable/ic_card"
+        android:drawableTint="#6C6868"
+        android:elevation="@dimen/margin_small"
+        android:hint="@string/enter_card_number"
+        android:inputType="number"
+        android:paddingHorizontal="@dimen/margin_component"
+        app:layout_constraintEnd_toEndOf="@id/action_bar_container"
+        app:layout_constraintStart_toStartOf="@id/action_bar_container"
+        app:layout_constraintTop_toBottomOf="@id/_tv_send_to" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_identified_use"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_component"
+        android:layout_marginTop="@dimen/margin_extra_large"
+        android:text="@string/identified_user"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/input_send_to" />
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_component"
+        android:textSize="28sp"
+        app:layout_constraintStart_toStartOf="@id/tv_identified_use"
+        app:layout_constraintTop_toBottomOf="@id/tv_identified_use"
+        tools:text="John Defoe" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_add_card"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_margin="@dimen/margin_component"
+        android:enabled="false"
+        android:text="@string/transfer_money"
+        app:cornerRadius="@dimen/margin_std"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:shapeAppearanceOverlay="MaterialGitaBankButton" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

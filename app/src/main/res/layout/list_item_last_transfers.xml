@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingVertical="@dimen/margin_std">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/image_transfer"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:src="@drawable/man"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/CircleImageView" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_transfer_where"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_component"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/image_transfer"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Netflix" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_descriptions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tv_transfer_where"
+        app:layout_constraintTop_toBottomOf="@id/tv_transfer_where"
+        tools:text="Entertainment" />
+</androidx.constraintlayout.widget.ConstraintLayout>
