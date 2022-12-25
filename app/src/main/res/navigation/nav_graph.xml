@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashScreen">
+
+    <fragment
+        android:id="@+id/splashScreen"
+        android:name="uz.gita.mobile_banking.presentation.ui.splash.SplashScreen"
+        android:label="SplashScreen"
+        tools:layout="@layout/screen_splash">
+        <action
+            android:id="@+id/action_splashScreen_to_loginScreen"
+            app:destination="@id/loginScreen"
+            app:popUpTo="@id/nav_graph" />
+        <action
+            android:id="@+id/action_splashScreen_to_pinScreen"
+            app:destination="@id/pinScreen"
+            app:popUpTo="@id/nav_graph" />
+    </fragment>
+    <fragment
+        android:id="@+id/pinScreen"
+        android:name="uz.gita.mobile_banking.presentation.ui.pin.PinScreen"
+        android:label="PinScreen"
+        tools:layout="@layout/screen_pin">
+        <action
+            android:id="@+id/action_pinScreen_to_homeScreen"
+            app:destination="@id/homeScreen"
+            app:popUpTo="@id/nav_graph" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeScreen"
+        android:name="uz.gita.mobile_banking.presentation.ui.home.HomeScreen"
+        android:label="HomeScreen"
+        tools:layout="@layout/screen_home">
+        <action
+            android:id="@+id/action_homeScreen_to_addCardScreen"
+            app:destination="@id/addCardScreen" />
+        <action
+            android:id="@+id/action_homeScreen_to_transferScreen"
+            app:destination="@id/transferScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginScreen"
+        android:name="uz.gita.mobile_banking.presentation.ui.login.LoginScreen"
+        android:label="LoginScreen"
+        tools:layout="@layout/screen_login">
+        <action
+            android:id="@+id/action_loginScreen_to_loginVerifyScreen"
+            app:destination="@id/loginVerifyScreen" />
+        <action
+            android:id="@+id/action_loginScreen_to_registerScreen"
+            app:destination="@id/registerScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginVerifyScreen"
+        android:name="uz.gita.mobile_banking.presentation.ui.verify.login.LoginVerifyScreen"
+        android:label="LoginVerifyScreen"
+        tools:layout="@layout/screen_login_verify" >
+        <action
+            android:id="@+id/action_loginVerifyScreen_to_pinScreen"
+            app:destination="@id/pinScreen"
+            app:popUpTo="@id/nav_graph" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerScreen"
+        android:name="uz.gita.mobile_banking.presentation.ui.register.RegisterScreen"
+        android:label="RegisterScreen"
+        tools:layout="@layout/screen_register">
+        <action
+            android:id="@+id/action_registerScreen_to_registerVerifyScreen"
+            app:destination="@id/registerVerifyScreen" />
+        <action
+            android:id="@+id/action_registerScreen_to_loginScreen"
+            app:destination="@id/loginScreen"
+            app:popUpTo="@id/nav_graph" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerVerifyScreen"
+        android:name="uz.gita.mobile_banking.presentation.ui.verify.register.RegisterVerifyScreen"
+        android:label="RegisterVerifyScreen"
+        tools:layout="@layout/screen_register_verify">
+        <action
+            android:id="@+id/action_registerVerifyScreen_to_pinScreen"
+            app:destination="@id/pinScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/addCardScreen"
+        android:name="uz.gita.mobile_banking.presentation.ui.card.add.AddCardScreen"
+        android:label="AddCardScreen"
+        tools:layout="@layout/screen_add_card" />
+    <fragment
+        android:id="@+id/transferScreen"
+        android:name="uz.gita.mobile_banking.presentation.ui.transfer.TransferScreen"
+        android:label="TransferScreen"
+        tools:layout="@layout/screen_transfer" />
+</navigation>

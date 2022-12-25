@@ -6,6 +6,6 @@ import uz.gita.mobile_banking.R
 
 // Created by Jamshid Isoqov on 12/25/2022
 @AndroidEntryPoint
-class TransferScreen : Fragment(R.layout.screen_tranfer) {
+class TransferScreen : Fragment(R.layout.screen_transfer) {
 
 }
