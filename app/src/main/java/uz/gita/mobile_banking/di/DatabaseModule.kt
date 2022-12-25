@@ -15,6 +15,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import uz.gita.mobile_banking.BuildConfig
 import uz.gita.mobile_banking.data.local.prefs.MySharedPrefs
+import uz.gita.mobile_banking.data.remote.api.AuthApi
 import uz.gita.mobile_banking.data.remote.authenticator.TokenAuthenticator
 import javax.inject.Singleton
 
@@ -58,5 +59,8 @@ object DatabaseModule {
         .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
+
+    @[Provides Singleton]
+    fun provideAuthApi(retrofit: Retrofit): AuthApi = retrofit.create(AuthApi::class.java)
 
 }
