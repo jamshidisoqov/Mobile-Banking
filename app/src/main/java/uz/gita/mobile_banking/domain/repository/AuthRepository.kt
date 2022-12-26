@@ -9,18 +9,18 @@ import uz.gita.mobile_banking.utils.ResultData
 // Created by Jamshid Isoqov on 12/25/2022
 interface AuthRepository {
 
-    suspend fun register(registerDto: RegisterDto): Flow<ResultData<TokenData>>
+    fun register(registerDto: RegisterDto): Flow<ResultData<TokenData>>
 
-    suspend fun login(loginDto: LoginDto): Flow<ResultData<TokenData>>
+    fun login(loginDto: LoginDto): Flow<ResultData<TokenData>>
 
-    suspend fun loginVerify(verifyDto: VerifyDto): Flow<ResultData<HeaderData>>
+    fun loginVerify(verifyDto: VerifyDto): Flow<ResultData<HeaderData>>
 
-    suspend fun registerVerify(verifyDto: VerifyDto): Flow<ResultData<HeaderData>>
+    fun registerVerify(verifyDto: VerifyDto): Flow<ResultData<HeaderData>>
 
-    suspend fun updateToken(updateTokenDto: UpdateTokenDto): Flow<ResultData<HeaderData>>
+    fun updateToken(updateTokenDto: UpdateTokenDto): Flow<ResultData<HeaderData>>
 
-    suspend fun loginResendCode(tokenDto: TokenDto): Flow<ResultData<TokenData>>
+    fun loginResendCode(tokenDto: TokenDto): Flow<ResultData<TokenData>>
 
-    suspend fun registerResendCode(tokenDto: TokenDto): Flow<ResultData<TokenData>>
+    fun registerResendCode(tokenDto: TokenDto): Flow<ResultData<TokenData>>
 
 }
