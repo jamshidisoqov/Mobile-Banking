@@ -31,6 +31,8 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/margin_component"
         android:hint="@string/first_name"
+        app:endIconMode="clear_text"
+        app:helperText="Required*"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,6 +55,8 @@
         android:layout_marginHorizontal="@dimen/margin_component"
         android:layout_marginTop="@dimen/margin_component"
         android:hint="@string/last_name"
+        app:endIconMode="clear_text"
+        app:helperText="Required*"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/til_first_name">
@@ -73,6 +77,8 @@
         android:layout_marginHorizontal="@dimen/margin_component"
         android:layout_marginTop="@dimen/margin_component"
         android:hint="@string/date_of_birth"
+        app:endIconMode="clear_text"
+        app:helperText="Required*"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/til_last_name">
@@ -81,7 +87,8 @@
             android:id="@+id/input_date_of_birth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
+            android:focusable="false"
+            android:inputType="none"
             android:maxLines="1" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -93,6 +100,8 @@
         android:layout_marginHorizontal="@dimen/margin_component"
         android:layout_marginTop="@dimen/margin_component"
         android:hint="@string/phone_number"
+        app:endIconMode="clear_text"
+        app:helperText="Required*"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/til_date_of_birth">
@@ -113,6 +122,9 @@
         android:layout_marginHorizontal="@dimen/margin_component"
         android:layout_marginTop="@dimen/margin_component"
         android:hint="@string/password"
+        app:counterEnabled="true"
+        app:counterMaxLength="15"
+        app:helperText="Password length is greater than or equal to 6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/til_phone"
@@ -125,6 +137,7 @@
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:maxEms="15"
+            android:maxLength="20"
             android:maxLines="1" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -187,7 +200,6 @@
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_margin="@dimen/margin_component"
-        android:enabled="false"
         android:text="@string/sign_in"
         app:cornerRadius="@dimen/margin_std"
         app:layout_constraintBottom_toBottomOf="parent"

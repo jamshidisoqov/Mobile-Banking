@@ -6,18 +6,20 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import uz.gita.mobile_banking.directions.LoginScreenDirection
+import uz.gita.mobile_banking.directions.RegisterScreenDirection
 import uz.gita.mobile_banking.domain.usecase.AuthUseCase
-import uz.gita.mobile_banking.presentation.ui.login.LoginViewModel
+import uz.gita.mobile_banking.domain.usecase.UserUseCase
+import uz.gita.mobile_banking.presentation.ui.register.RegisterViewModel
 import uz.gita.mobile_banking.utils.getMessage
 import uz.gita.mobile_banking.utils.hasConnection
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModelImpl @Inject constructor(
+class RegisterViewModelImpl @Inject constructor(
     private val authUseCase: AuthUseCase,
-    private val direction: LoginScreenDirection
-) : LoginViewModel, ViewModel() {
+    private val userUseCase: UserUseCase,
+    private val direction: RegisterScreenDirection
+) : RegisterViewModel, ViewModel() {
 
     override val loadingSharedFlow = MutableSharedFlow<Boolean>()
 
@@ -25,14 +27,31 @@ class LoginViewModelImpl @Inject constructor(
 
     override val errorSharedFlow = MutableSharedFlow<String>()
 
-
-    override fun login(phone: String, password: String) {
+    override fun register(
+        phone: String,
+        password: String,
+        firstName: String,
+        lastName: String,
+        bornDate: Long,
+        gender: Int
+    ) {
         viewModelScope.launch {
             if (hasConnection()) {
-                loadingSharedFlow.emit(true)
-                authUseCase.login(phone, password).collectLatest { result ->
-                    loadingSharedFlow.emit(false)
+                authUseCase.register(
+                    phone = phone,
+                    password = password,
+                    firstName = firstName,
+                    lastName = lastName,
+                    bornDate = bornDate,
+                    gender = gender
+                ).collectLatest { result ->
                     result.onSuccess {
+                        userUseCase.setFirstName(firstName)
+                        userUseCase.setLastName(lastName)
+                        userUseCase.setPassword(password)
+                        userUseCase.setGender(gender)
+                        userUseCase.setBornDate(bornDate)
+                        userUseCase.setPhoneNumber(phone)
                         authUseCase.setToken(it.token)
                         direction.navigateToVerify()
                     }.onMessage {
@@ -47,15 +66,9 @@ class LoginViewModelImpl @Inject constructor(
         }
     }
 
-    override fun navigateToRegister() {
+    override fun navigateToSignIn() {
         viewModelScope.launch {
-            direction.navigateToRegister()
-        }
-    }
-
-    override fun forgetPassword() {
-        viewModelScope.launch {
-
+            direction.navigateToLogin()
         }
     }
 }
