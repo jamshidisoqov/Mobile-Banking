@@ -41,4 +41,25 @@ class AuthUseCaseImpl @Inject constructor(
 
     override fun registerResendCode(): Flow<ResultData<TokenData>> =
         authRepository.registerResendCode(TokenDto(mySharedPrefs.accessToken))
+
+    override suspend fun setToken(token: String) {
+        mySharedPrefs.tempToken = token
+    }
+
+    override suspend fun setAccessToken(accessToken: String) {
+        mySharedPrefs.accessToken = accessToken
+    }
+
+    override suspend fun setRefreshToken(refreshToken: String) {
+        mySharedPrefs.refreshToken = refreshToken
+    }
+
+    override suspend fun getToken(): String =
+        mySharedPrefs.tempToken
+
+    override suspend fun getAccessToken(): String =
+        mySharedPrefs.accessToken
+
+    override suspend fun getRefreshToken(): String =
+        mySharedPrefs.refreshToken
 }

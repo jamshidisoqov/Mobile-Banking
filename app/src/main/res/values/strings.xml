@@ -36,4 +36,7 @@
     <string name="send_to">Send to</string>
     <string name="enter_card_number">Enter the Card number</string>
     <string name="identified_user">Identified user</string>
+    <string name="error">Error</string>
+    <string name="close">Close</string>
+    <string name="message">Message</string>
 </resources>

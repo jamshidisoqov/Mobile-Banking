@@ -27,4 +27,15 @@ interface AuthUseCase {
 
     fun registerResendCode(): Flow<ResultData<TokenData>>
 
+    suspend fun setToken(token: String)
+
+    suspend fun setAccessToken(accessToken: String)
+
+    suspend fun setRefreshToken(refreshToken: String)
+
+    suspend fun getToken(): String
+
+    suspend fun getAccessToken(): String
+
+    suspend fun getRefreshToken(): String
 }

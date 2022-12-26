@@ -86,7 +86,6 @@
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_margin="@dimen/margin_component"
-        android:enabled="false"
         android:text="@string/sign_up"
         app:cornerRadius="@dimen/margin_std"
         app:layout_constraintBottom_toBottomOf="parent"
