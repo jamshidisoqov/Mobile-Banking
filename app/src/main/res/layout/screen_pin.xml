@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.16"
+        app:layout_constraintVertical_bias="0.12"
         tools:text="Input pin code" />
 
     <com.chaos.view.PinView
@@ -24,6 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_extra_large"
+        android:layout_marginBottom="@dimen/margin_extra_large"
         android:inputType="numberPassword"
         android:itemBackground="@drawable/bg_circle"
         android:textColor="@color/app_color"
@@ -33,11 +34,103 @@
         app:hideLineWhenFilled="true"
         app:itemRadius="@dimen/margin_std"
         app:itemSpacing="@dimen/margin_component"
+        app:layout_constraintBottom_toTopOf="@id/ll_number_container"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_input_pin_code"
         app:lineColor="@android:color/transparent"
         tools:text="1234" />
+
+    <LinearLayout
+        android:id="@+id/ll_number_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="3:4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pin_view"
+        app:layout_constraintWidth_percent="0.7">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                style="@style/CustomButtonStyle"
+                android:text="@string/_1" />
+
+            <TextView
+                style="@style/CustomButtonStyle"
+                android:text="@string/_2" />
+
+            <TextView
+                style="@style/CustomButtonStyle"
+                android:text="@string/_3" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                style="@style/CustomButtonStyle"
+                android:text="@string/_4" />
+
+            <TextView
+                style="@style/CustomButtonStyle"
+                android:text="@string/_5" />
+
+            <TextView
+                style="@style/CustomButtonStyle"
+                android:text="@string/_6" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                style="@style/CustomButtonStyle"
+                android:text="@string/_7" />
+
+            <TextView
+                style="@style/CustomButtonStyle"
+                android:text="@string/_8" />
+
+            <TextView
+                style="@style/CustomButtonStyle"
+                android:text="@string/_9" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/btn_minus"
+                style="@style/CustomButtonStyle"
+                android:visibility="invisible"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                style="@style/CustomButtonStyle"
+                android:text="@string/_0" />
+
+            <ImageView
+                android:id="@+id/image_delete"
+                style="@style/CustomButtonStyle"
+                android:padding="28dp"
+                android:src="@drawable/ic_delete"
+                tools:ignore="ContentDescription" />
+        </LinearLayout>
+
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
