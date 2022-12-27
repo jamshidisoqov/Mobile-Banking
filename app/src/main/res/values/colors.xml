@@ -12,4 +12,5 @@
     <color name="view_bg_color">#F4F4F4</color>
     <color name="error_bg_color">#E30510</color>
     <color name="secondary_card_color">#060F27</color>
+    <color name="shimmer_background">#dddddd</color>
 </resources>

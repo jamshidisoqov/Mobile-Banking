@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.facebook.shimmer.ShimmerFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/shimmer_frame_home"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:shimmer_duration="800">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/container_home"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="invisible">
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:id="@+id/action_bar_container"
@@ -19,65 +20,52 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <View
+                android:layout_width="200dp"
+                android:layout_height="30dp"
                 android:layout_centerVertical="true"
-                android:layout_marginStart="@dimen/margin_large"
-                android:text="@string/my_accounts"
-                android:textColor="@color/black"
-                android:textSize="22sp"
-                android:textStyle="bold"
+                android:layout_marginStart="@dimen/margin_component"
+                android:background="@drawable/bg_shimmer"
                 tools:ignore="RelativeOverlap" />
 
-            <androidx.appcompat.widget.AppCompatImageView
+            <View
                 android:id="@+id/image_notification"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/margin_std"
-                android:background="?simpleItemSelectedRippleColor"
-                android:padding="@dimen/margin_std"
-                android:src="@drawable/ic_notification" />
+                android:background="@drawable/bg_shimmer" />
 
         </RelativeLayout>
 
-        <com.jackandphantom.carouselrecyclerview.CarouselRecyclerview
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/list_cards"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:layout_height="180dp"
+            android:layout_margin="@dimen/margin_component"
+            app:cardBackgroundColor="@color/shimmer_background"
+            app:cardCornerRadius="@dimen/margin_extra_large"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/action_bar_container"
-            tools:listitem="@layout/list_item_cards" />
+            app:layout_constraintTop_toBottomOf="@id/action_bar_container" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_add_card"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_margin="@dimen/margin_component"
+            app:cardBackgroundColor="@color/shimmer_background"
             app:cardCornerRadius="32dp"
             app:layout_constraintEnd_toStartOf="@id/card_pay"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/list_cards">
+            app:layout_constraintTop_toBottomOf="@id/list_cards" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="20dp"
-                android:src="@drawable/ic_card" />
-
-        </androidx.cardview.widget.CardView>
-
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <View
+            android:layout_width="50dp"
+            android:layout_height="20dp"
             android:layout_marginTop="@dimen/margin_std"
-            android:text="@string/add_card"
-            android:textColor="@color/black"
+            android:background="@drawable/bg_shimmer"
             app:layout_constraintEnd_toEndOf="@id/card_add_card"
             app:layout_constraintStart_toStartOf="@id/card_add_card"
             app:layout_constraintTop_toBottomOf="@id/card_add_card" />
@@ -87,25 +75,17 @@
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_margin="@dimen/margin_component"
+            app:cardBackgroundColor="@color/shimmer_background"
             app:cardCornerRadius="32dp"
             app:layout_constraintEnd_toStartOf="@id/card_transfer"
             app:layout_constraintStart_toEndOf="@id/card_add_card"
-            app:layout_constraintTop_toBottomOf="@id/list_cards">
+            app:layout_constraintTop_toBottomOf="@id/list_cards" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="20dp"
-                android:src="@drawable/ic_payment" />
-
-        </androidx.cardview.widget.CardView>
-
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <View
+            android:layout_width="50dp"
+            android:layout_height="20dp"
             android:layout_marginTop="@dimen/margin_std"
-            android:text="@string/payment"
-            android:textColor="@color/black"
+            android:background="@drawable/bg_shimmer"
             app:layout_constraintEnd_toEndOf="@id/card_pay"
             app:layout_constraintStart_toStartOf="@id/card_pay"
             app:layout_constraintTop_toBottomOf="@id/card_pay" />
@@ -115,25 +95,17 @@
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_margin="@dimen/margin_component"
+            app:cardBackgroundColor="@color/shimmer_background"
             app:cardCornerRadius="32dp"
             app:layout_constraintEnd_toStartOf="@id/card_more"
             app:layout_constraintStart_toEndOf="@id/card_pay"
-            app:layout_constraintTop_toBottomOf="@id/list_cards">
+            app:layout_constraintTop_toBottomOf="@id/list_cards" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="20dp"
-                android:src="@drawable/ic_send" />
-
-        </androidx.cardview.widget.CardView>
-
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <View
+            android:layout_width="50dp"
+            android:layout_height="20dp"
             android:layout_marginTop="@dimen/margin_std"
-            android:text="@string/send"
-            android:textColor="@color/black"
+            android:background="@drawable/bg_shimmer"
             app:layout_constraintEnd_toEndOf="@id/card_transfer"
             app:layout_constraintStart_toStartOf="@id/card_transfer"
             app:layout_constraintTop_toBottomOf="@id/card_transfer" />
@@ -143,26 +115,18 @@
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_margin="@dimen/margin_component"
+            app:cardBackgroundColor="@color/shimmer_background"
             app:cardCornerRadius="32dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/card_transfer"
-            app:layout_constraintTop_toBottomOf="@id/list_cards">
+            app:layout_constraintTop_toBottomOf="@id/list_cards" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="20dp"
-                android:src="@drawable/ic_more" />
-
-        </androidx.cardview.widget.CardView>
-
-        <com.google.android.material.textview.MaterialTextView
+        <View
             android:id="@+id/tv_more"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="20dp"
             android:layout_marginTop="@dimen/margin_std"
-            android:text="@string/more"
-            android:textColor="@color/black"
+            android:background="@drawable/bg_shimmer"
             app:layout_constraintEnd_toEndOf="@id/card_more"
             app:layout_constraintStart_toStartOf="@id/card_more"
             app:layout_constraintTop_toBottomOf="@id/card_more" />
@@ -176,43 +140,50 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_more">
 
-            <com.google.android.material.textview.MaterialTextView
+            <View
                 android:id="@+id/_tv_recent_transfers"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="200dp"
+                android:layout_height="24dp"
                 android:layout_marginTop="@dimen/margin_std"
-                android:text="@string/recent_transactions"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"
+                android:background="@drawable/bg_shimmer"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
 
-            <androidx.appcompat.widget.AppCompatImageView
+            <View
                 android:id="@+id/image_search"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:padding="@dimen/margin_std"
-                android:src="@drawable/ic_search"
+                android:background="@drawable/bg_shimmer"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/last_transfers"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/image_search"
-                tools:listitem="@layout/list_item_last_transfers" />
+                app:layout_constraintTop_toBottomOf="@id/image_search">
+
+                <include layout="@layout/list_item_transfer_shimmer" />
+
+                <include layout="@layout/list_item_transfer_shimmer" />
+
+                <include layout="@layout/list_item_transfer_shimmer" />
+
+                <include layout="@layout/list_item_transfer_shimmer" />
+
+                <include layout="@layout/list_item_transfer_shimmer" />
+
+                <include layout="@layout/list_item_transfer_shimmer" />
+
+                <include layout="@layout/list_item_transfer_shimmer" />
+
+                <include layout="@layout/list_item_transfer_shimmer" />
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <include
-        android:id="@+id/shimmer_frame"
-        layout="@layout/screen_accounts_shimmer" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</com.facebook.shimmer.ShimmerFrameLayout>
