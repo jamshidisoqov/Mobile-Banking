@@ -94,5 +94,5 @@
         android:id="@+id/transferScreen"
         android:name="uz.gita.mobile_banking.presentation.ui.transfer.TransferScreen"
         android:label="TransferScreen"
-        tools:layout="@layout/screen_transfer" />
+        tools:layout="@layout/screen_transfer" /><action android:id="@+id/action_global_pinScreen" app:destination="@id/pinScreen"/>
 </navigation>
