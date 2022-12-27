@@ -22,9 +22,12 @@ interface DirectionsModule {
     fun bindRegisterScreen(impl: RegisterScreenDirectionImpl): RegisterScreenDirection
 
     @Binds
-    fun bindLoginVerifyScreen(impl:LoginVerifyScreenDirectionImpl):LoginVerifyScreenDirection
+    fun bindLoginVerifyScreen(impl: LoginVerifyScreenDirectionImpl): LoginVerifyScreenDirection
 
     @Binds
-    fun bindRegisterVerifyScreen(impl:RegisterVerifyScreenDirectionImpl):RegisterVerifyScreenDirection
+    fun bindRegisterVerifyScreen(impl: RegisterVerifyScreenDirectionImpl): RegisterVerifyScreenDirection
+
+    @Binds
+    fun bindPinScreen(impl: PinScreenDirectionImpl): PinScreenDirection
 
 }
