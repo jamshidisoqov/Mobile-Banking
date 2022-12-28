@@ -1,4 +1,4 @@
-package uz.gita.mobile_banking.presentation.presenterl
+package uz.gita.mobile_banking.presentation.presenter
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

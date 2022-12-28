@@ -30,4 +30,6 @@ interface DirectionsModule {
     @Binds
     fun bindPinScreen(impl: PinScreenDirectionImpl): PinScreenDirection
 
+    @Binds
+    fun bindAccountScreen(impl: AccountScreenDirectionImpl): AccountScreenDirection
 }

@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.onEach
 import ru.ldralighieri.corbind.view.clicks
 import uz.gita.mobile_banking.R
 import uz.gita.mobile_banking.databinding.ScreenRegisterVerifyBinding
-import uz.gita.mobile_banking.presentation.presenterl.RegisterVerifyViewModelImpl
+import uz.gita.mobile_banking.presentation.presenter.RegisterVerifyViewModelImpl
 import uz.gita.mobile_banking.utils.getTimeFormat
 import uz.gita.mobile_banking.utils.include
 
