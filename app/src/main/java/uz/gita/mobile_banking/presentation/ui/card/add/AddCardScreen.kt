@@ -1,6 +1,7 @@
 package uz.gita.mobile_banking.presentation.ui.card.add
 
 import android.os.Bundle
+import android.text.format.DateFormat
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -26,11 +27,14 @@ class AddCardScreen : Fragment(R.layout.screen_add_card) {
 
     private val viewBinding: ScreenAddCardBinding by viewBinding()
 
-    private val boolName: Boolean = false
+    private var boolName: Boolean = false
 
-    private val boolCardNumber: Boolean = false
+    private var boolCardNumber: Boolean = false
 
     private var bornDate = 0L
+
+    private val checker: Boolean
+        get() = boolCardNumber && boolName && bornDate > 0
 
 
     private val viewModel: AddCardViewModel by viewModels<AddCardViewModelImpl>()
@@ -55,23 +59,46 @@ class AddCardScreen : Fragment(R.layout.screen_add_card) {
         }.launchIn(lifecycleScope)
 
         inputCardName.textChanges().onEach {
-
+            boolName = it.isNotEmpty()
+            tvCardName.text = it.toString()
+            check()
         }.launchIn(viewLifecycleOwner.lifecycleScope)
 
         inputCardNumber.textChanges().onEach {
-
+            boolCardNumber = it.length >= 19
+            tvCardNumber.text = it.toString()
+            check()
         }.launchIn(viewLifecycleOwner.lifecycleScope)
 
         inputExpireDate.clicks().onEach {
             showChooseDate()
         }.launchIn(lifecycleScope)
+        btnAddCard.clicks()
+            .onEach {
+                val date = Date(bornDate)
+                val month = DateFormat.format("MM", date).toString()
+                val year = DateFormat.format("yyyy", date).toString()
+                viewModel.addCard(
+                    cardName = inputCardName.text.toString(),
+                    cardNumber = inputCardNumber.text.toString(),
+                    expiredMonth = month,
+                    expiredYear = year
+                )
+            }.launchIn(lifecycleScope)
+    }
+
+    private fun check() = viewBinding.include {
+        btnAddCard.isEnabled = checker
     }
 
     private fun showChooseDate() = viewBinding.include {
         val dialog = ChooseDateDialog(requireContext(), Date())
         dialog.setConfirmClickListener {
             bornDate = it.time
-            inputExpireDate.setText(getCurrentDate(it))
+            val date = getCurrentDate(it)
+            inputExpireDate.text = date
+            tvCardExpireDate.text = date
+            check()
         }
         dialog.show()
     }

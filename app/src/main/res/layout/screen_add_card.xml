@@ -182,6 +182,8 @@
         android:layout_width="0dp"
         android:layout_height="?actionBarSize"
         android:layout_marginTop="@dimen/margin_std"
+        android:maxLength="19"
+        android:inputType="number"
         android:background="@drawable/bg_text_field"
         android:hint="@string/default_card_number"
         android:paddingHorizontal="@dimen/margin_component"
@@ -201,15 +203,16 @@
         app:layout_constraintStart_toStartOf="@id/card_container"
         app:layout_constraintTop_toBottomOf="@id/input_card_number" />
 
-    <com.google.android.material.textfield.TextInputEditText
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/input_expire_date"
         android:layout_width="0dp"
         android:layout_height="?actionBarSize"
         android:layout_marginTop="@dimen/margin_std"
         android:background="@drawable/bg_text_field"
         android:focusable="false"
+        android:textSize="16sp"
+        android:gravity="center_vertical"
         android:hint="@string/default_date"
-        android:inputType="none"
         android:paddingHorizontal="@dimen/margin_component"
         app:layout_constraintEnd_toEndOf="@id/card_container"
         app:layout_constraintStart_toStartOf="@id/_tv_card_name"
