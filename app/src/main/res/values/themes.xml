@@ -11,6 +11,7 @@
         <item name="colorOnSecondary">@color/black</item>
         <item name="textAllCaps">false</item>
         <item name="android:windowBackground">#f7f7f7</item>
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->

@@ -1,11 +1,14 @@
 package uz.gita.mobile_banking.presentation.ui.home.pages.accounts
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.jackandphantom.carouselrecyclerview.CarouselLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -65,7 +68,7 @@ class AccountsScreen : Fragment(R.layout.screen_accounts) {
         }.launchIn(lifecycleScope)
 
         viewModel.cardsList.onEach {
-            cardAdapter.submitList(it)
+            //cardAdapter.submitList(it)
         }.launchIn(viewLifecycleOwner.lifecycleScope)
 
         viewModel.lastTransactions.onEach {

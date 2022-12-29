@@ -22,7 +22,7 @@ class TokenAuthenticator(
     override fun authenticate(route: Route?, response: Response): Request? {
         val token = getUpdateToken()
         return response.request().newBuilder()
-            .header("Authorization", "Bearer ${mySharedPrefs.accessToken}")
+            .header("Authorization", "Bearer $token")
             .build()
     }
 

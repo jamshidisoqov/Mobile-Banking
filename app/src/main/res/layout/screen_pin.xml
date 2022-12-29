@@ -26,7 +26,7 @@
         android:layout_marginTop="@dimen/margin_extra_large"
         android:layout_marginBottom="@dimen/margin_extra_large"
         android:focusable="false"
-        android:inputType="none"
+        android:inputType="numberPassword"
         android:itemBackground="@drawable/bg_circle"
         android:textColor="@color/app_color"
         android:textSize="18sp"
@@ -59,15 +59,15 @@
             android:layout_height="0dp"
             android:layout_weight="1">
 
-            <TextView
+            <com.google.android.material.button.MaterialButton
                 style="@style/CustomButtonStyle"
                 android:text="@string/_1" />
 
-            <TextView
+            <com.google.android.material.button.MaterialButton
                 style="@style/CustomButtonStyle"
                 android:text="@string/_2" />
 
-            <TextView
+            <com.google.android.material.button.MaterialButton
                 style="@style/CustomButtonStyle"
                 android:text="@string/_3" />
         </LinearLayout>
@@ -77,15 +77,15 @@
             android:layout_height="0dp"
             android:layout_weight="1">
 
-            <TextView
+            <com.google.android.material.button.MaterialButton
                 style="@style/CustomButtonStyle"
                 android:text="@string/_4" />
 
-            <TextView
+            <com.google.android.material.button.MaterialButton
                 style="@style/CustomButtonStyle"
                 android:text="@string/_5" />
 
-            <TextView
+            <com.google.android.material.button.MaterialButton
                 style="@style/CustomButtonStyle"
                 android:text="@string/_6" />
         </LinearLayout>
@@ -95,15 +95,15 @@
             android:layout_height="0dp"
             android:layout_weight="1">
 
-            <TextView
+            <com.google.android.material.button.MaterialButton
                 style="@style/CustomButtonStyle"
                 android:text="@string/_7" />
 
-            <TextView
+            <com.google.android.material.button.MaterialButton
                 style="@style/CustomButtonStyle"
                 android:text="@string/_8" />
 
-            <TextView
+            <com.google.android.material.button.MaterialButton
                 style="@style/CustomButtonStyle"
                 android:text="@string/_9" />
         </LinearLayout>
@@ -113,13 +113,13 @@
             android:layout_height="0dp"
             android:layout_weight="1">
 
-            <TextView
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_minus"
                 style="@style/CustomButtonStyle"
                 android:visibility="invisible"
                 tools:ignore="ContentDescription" />
 
-            <TextView
+            <com.google.android.material.button.MaterialButton
                 style="@style/CustomButtonStyle"
                 android:text="@string/_0" />
 

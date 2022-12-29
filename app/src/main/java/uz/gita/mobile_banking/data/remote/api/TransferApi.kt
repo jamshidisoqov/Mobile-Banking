@@ -5,10 +5,7 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Query
-import uz.gita.mobile_banking.data.remote.request.transfer.PanDto
-import uz.gita.mobile_banking.data.remote.request.transfer.TransferDto
-import uz.gita.mobile_banking.data.remote.request.transfer.TransferFreeDto
-import uz.gita.mobile_banking.data.remote.request.transfer.TransferVerifyDto
+import uz.gita.mobile_banking.data.remote.request.transfer.*
 import uz.gita.mobile_banking.data.remote.response.auth.TokenData
 import uz.gita.mobile_banking.data.remote.response.transfer.PanData
 import uz.gita.mobile_banking.data.remote.response.transfer.TransferFreeData
@@ -21,6 +18,9 @@ interface TransferApi {
 
     @POST("transfer/card-owner")
     suspend fun addPan(@Body panDto: PanDto): Response<PanData>
+
+    @POST("transfer/card-owner")
+    suspend fun getCardOwnerByPan(@Body panDto: PanDto):Response<PanData>
 
     @POST("transfer/fee")
     suspend fun addFreeTransfer(@Body transferFreeDto: TransferFreeDto): Response<TransferFreeData>
@@ -38,7 +38,7 @@ interface TransferApi {
     ): Response<TransferHistoryData>
 
     @POST("transfer/transfer/resend")
-    suspend fun resendTransfer(@Body tokenDto: TransferDto): Response<TokenData>
+    suspend fun resendTransfer(@Body tokenDto: TokenDto): Response<TokenData>
 
 
 }

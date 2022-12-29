@@ -28,7 +28,7 @@ class AccountScreenDirectionImpl @Inject constructor(
     }
 
     override suspend fun navigateToSend() {
-        TODO("Not yet implemented")
+        navigator.navigateTo(HomeScreenDirections.actionHomeScreenToTransferScreen())
     }
 
     override suspend fun navigateToTransferDetail(transferData: LastTransferData) {

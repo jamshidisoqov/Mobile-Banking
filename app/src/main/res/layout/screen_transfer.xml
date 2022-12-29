@@ -71,18 +71,15 @@
         app:layout_constraintTop_toBottomOf="@id/input_amount" />
 
 
-    <com.jackandphantom.carouselrecyclerview.CarouselRecyclerview
-        android:id="@+id/list_cards"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/pager_cards"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="180dp"
         android:layout_marginHorizontal="@dimen/margin_small"
         android:layout_marginTop="@dimen/margin_component"
-        android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/_tv_selected_card"
-        tools:listitem="@layout/list_item_cards" />
+        app:layout_constraintTop_toBottomOf="@id/_tv_selected_card" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/_tv_send_to"
@@ -94,9 +91,9 @@
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/list_cards" />
+        app:layout_constraintTop_toBottomOf="@id/pager_cards" />
 
-    <com.google.android.material.textfield.TextInputEditText
+    <br.com.sapereaude.maskedEditText.MaskedEditText
         android:id="@+id/input_send_to"
         android:layout_width="0dp"
         android:layout_height="?actionBarSize"
@@ -106,8 +103,9 @@
         android:backgroundTint="@color/white"
         android:drawableEnd="@drawable/ic_card"
         android:drawableTint="#6C6868"
+        app:mask="#### #### #### ####"
         android:elevation="@dimen/margin_small"
-        android:hint="@string/enter_card_number"
+        android:hint="@string/default_card_number"
         android:inputType="number"
         android:paddingHorizontal="@dimen/margin_component"
         app:layout_constraintEnd_toEndOf="@id/action_bar_container"
@@ -128,6 +126,7 @@
 
 
     <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_identified_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_component"

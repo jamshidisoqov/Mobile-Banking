@@ -1,10 +1,7 @@
 package uz.gita.mobile_banking.domain.usecase.impl
 
 import kotlinx.coroutines.flow.Flow
-import uz.gita.mobile_banking.data.remote.request.transfer.PanDto
-import uz.gita.mobile_banking.data.remote.request.transfer.TransferDto
-import uz.gita.mobile_banking.data.remote.request.transfer.TransferFreeDto
-import uz.gita.mobile_banking.data.remote.request.transfer.TransferVerifyDto
+import uz.gita.mobile_banking.data.remote.request.transfer.*
 import uz.gita.mobile_banking.data.remote.response.auth.TokenData
 import uz.gita.mobile_banking.data.remote.response.transfer.PanData
 import uz.gita.mobile_banking.data.remote.response.transfer.TransferFreeData
@@ -20,6 +17,9 @@ class TransferUseCaseImpl @Inject constructor(
 ) : TransferUseCase {
     override fun addPan(panDto: PanDto): Flow<ResultData<PanData>> = repository.addPan(panDto)
 
+    override fun getCardOwnerByPan(panDto: PanDto): Flow<ResultData<PanData>> =
+        repository.getCardOwnerByPan(panDto)
+
     override fun addFreeTransfer(transferFreeDto: TransferFreeDto): Flow<ResultData<TransferFreeData>> =
         repository.addFreeTransfer(transferFreeDto)
 
@@ -32,6 +32,6 @@ class TransferUseCaseImpl @Inject constructor(
     override fun getTransfers(size: Int, currentPage: Int): Flow<ResultData<TransferHistoryData>> =
         repository.getTransfers(size, currentPage)
 
-    override fun resendTransfer(transfer: TransferDto): Flow<ResultData<TokenData>> =
-        repository.resendTransfer(transfer)
+    override fun resendTransfer(tokenDto: TokenDto): Flow<ResultData<TokenData>> =
+        repository.resendTransfer(tokenDto)
 }

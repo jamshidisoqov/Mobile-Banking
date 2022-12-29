@@ -1,10 +1,7 @@
 package uz.gita.mobile_banking.domain.repository
 
 import kotlinx.coroutines.flow.Flow
-import uz.gita.mobile_banking.data.remote.request.transfer.PanDto
-import uz.gita.mobile_banking.data.remote.request.transfer.TransferDto
-import uz.gita.mobile_banking.data.remote.request.transfer.TransferFreeDto
-import uz.gita.mobile_banking.data.remote.request.transfer.TransferVerifyDto
+import uz.gita.mobile_banking.data.remote.request.transfer.*
 import uz.gita.mobile_banking.data.remote.response.auth.TokenData
 import uz.gita.mobile_banking.data.remote.response.transfer.PanData
 import uz.gita.mobile_banking.data.remote.response.transfer.TransferFreeData
@@ -17,6 +14,8 @@ interface TransferRepository {
 
     fun addPan(panDto: PanDto): Flow<ResultData<PanData>>
 
+    fun getCardOwnerByPan(panDto: PanDto): Flow<ResultData<PanData>>
+
     fun addFreeTransfer(transferFreeDto: TransferFreeDto): Flow<ResultData<TransferFreeData>>
 
     fun addTransfer(transferDto: TransferDto): Flow<ResultData<TokenData>>
@@ -28,7 +27,7 @@ interface TransferRepository {
         currentPage: Int
     ): Flow<ResultData<TransferHistoryData>>
 
-    fun resendTransfer(transfer: TransferDto): Flow<ResultData<TokenData>>
+    fun resendTransfer(tokenDto: TokenDto): Flow<ResultData<TokenData>>
 
 
 }

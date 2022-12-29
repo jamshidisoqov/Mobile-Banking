@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_bottom_sheet"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/action_bar_container"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/transfer_money"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+
+    <include
+        android:id="@+id/container_card"
+        layout="@layout/list_item_cards" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_component"
+        android:text="@string/recipient"
+        android:textSize="18sp" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_card_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_component"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        tools:text="0000 0000 0000 0000" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_component"
+        android:layout_marginTop="@dimen/margin_std"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:text="Leo Messi" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_margin="@dimen/margin_component"
+        android:background="@color/shimmer_background" />
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_component"
+        android:layout_marginTop="@dimen/margin_std"
+        android:text="@string/amount"
+        android:textSize="18sp" />
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_component"
+        android:layout_marginTop="@dimen/margin_std"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        tools:text="1 000 UZS" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_margin="@dimen/margin_component"
+        android:background="@color/shimmer_background" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_component"
+        android:text="@string/input_code"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:id="@+id/container_sms_checker"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="@dimen/margin_large"
+        tools:ignore="UselessLeaf">
+
+        <com.fraggjkee.smsconfirmationview.SmsConfirmationView
+            android:id="@+id/smsChecker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:scv_codeLength="6"
+            app:scv_showCursor="true"
+            app:scv_symbolBackgroundColor="#D5D3D3"
+            app:scv_symbolBorderActiveColor="@color/app_color"
+            app:scv_symbolBorderColor="@color/view_bg_color"
+            app:scv_symbolBorderCornerRadius="8dp"
+            app:scv_symbolHeight="48dp"
+            app:scv_symbolTextColor="@color/black"
+            app:scv_symbolTextSize="20sp"
+            app:scv_symbolWidth="48dp" />
+
+    </LinearLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_time_expired"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/margin_extra_large"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        tools:text="Code expired time 00:31" />
+
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_component"
+            android:layout_marginTop="@dimen/margin_std"
+            android:layout_weight="1"
+            android:text="@string/saved_payment"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_component"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_transfer"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_margin="@dimen/margin_component"
+        android:enabled="false"
+        android:text="@string/transfer_money"
+        app:cornerRadius="@dimen/margin_std"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</LinearLayout>

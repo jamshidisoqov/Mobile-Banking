@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import uz.gita.mobile_banking.R
 import uz.gita.mobile_banking.data.remote.response.card.CardData
 import uz.gita.mobile_banking.databinding.ListItemCardsBinding
-import uz.gita.mobile_banking.utils.getFinanceType
 import uz.gita.mobile_banking.utils.include
 import uz.gita.mobile_banking.utils.inflate
 
@@ -32,6 +31,12 @@ class CardAdapter : ListAdapter<CardData, CardAdapter.ViewHolder>(cardItemCallba
 
     private var itemClickListener: ((CardData) -> Unit)? = null
 
+    private var itemScrollListener: ((Int) -> Unit)? = null
+
+    fun setItemScrollListener(block: (Int) -> Unit) {
+        itemScrollListener = block
+    }
+
     fun setItemClick(block: (CardData) -> Unit) {
         itemClickListener = block
     }
@@ -47,16 +52,22 @@ class CardAdapter : ListAdapter<CardData, CardAdapter.ViewHolder>(cardItemCallba
 
         @SuppressLint("SetTextI18n")
         fun onBind() = binding.include {
-            val data = getItem(absoluteAdapterPosition)
-            tvCardNumber.text = data.name
-            tvCardExpireDate.text = "${data.expiredMonth}/${data.expiredYear}"
-            tvBalance.text = data.amount.toDouble().getFinanceType()
+            /* val data = getItem(absoluteAdapterPosition)
+             tvCardNumber.text = data.name
+             tvCardExpireDate.text = "${data.expiredMonth}/${data.expiredYear}"
+             tvBalance.text = data.amount.toDouble().getFinanceType()*/
+
         }
     }
+
+    override fun getItemCount(): Int = 10
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(ListItemCardsBinding.bind(parent.inflate(R.layout.list_item_cards)))
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.onBind()
+    override fun onBindViewHolder(holder: ViewHolder, position: Int){
+        itemScrollListener?.invoke(position)
+        holder.onBind()
+    }
 
 }

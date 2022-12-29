@@ -3,7 +3,7 @@ package uz.gita.mobile_banking.presentation.ui.pin
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -11,12 +11,12 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import ru.ldralighieri.corbind.view.clicks
 import ru.ldralighieri.corbind.widget.textChanges
 import uz.gita.mobile_banking.R
 import uz.gita.mobile_banking.databinding.ScreenPinBinding
 import uz.gita.mobile_banking.presentation.presenter.PinViewModelImpl
 import uz.gita.mobile_banking.utils.include
-import uz.gita.mobile_banking.utils.log
 import uz.gita.mobile_banking.utils.showErrorDialog
 import uz.gita.mobile_banking.utils.toast
 
@@ -56,6 +56,15 @@ class PinScreen : Fragment(R.layout.screen_pin) {
 
         viewModel.getIsFirst()
 
+        imageDelete.clicks()
+            .onEach {
+                var text = pinView.text.toString()
+                if (text.isNotEmpty()) {
+                    text = text.substring(0, text.lastIndex)
+                    pinView.setText(text)
+                }
+            }.launchIn(lifecycleScope)
+
 
     }
 
@@ -89,16 +98,9 @@ class PinScreen : Fragment(R.layout.screen_pin) {
             for (j in 0 until group.childCount) {
                 val view = group.getChildAt(j)
                 view.setOnClickListener {
-                    if (view is TextView) {
-                        log("Keldi")
+                    if (view is Button) {
                         if (!isCompleted) {
                             pinView.append(view.text)
-                        } else {
-                            var text = pinView.text.toString()
-                            if (text.isNotEmpty()) {
-                                text = text.substring(0, text.lastIndex)
-                                pinView.setText(text)
-                            }
                         }
                     }
                 }
