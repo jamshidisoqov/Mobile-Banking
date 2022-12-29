@@ -15,8 +15,7 @@ import ru.ldralighieri.corbind.view.clicks
 import uz.gita.mobile_banking.R
 import uz.gita.mobile_banking.databinding.ScreenRegisterVerifyBinding
 import uz.gita.mobile_banking.presentation.presenter.RegisterVerifyViewModelImpl
-import uz.gita.mobile_banking.utils.getTimeFormat
-import uz.gita.mobile_banking.utils.include
+import uz.gita.mobile_banking.utils.*
 
 // Created by Jamshid Isoqov on 12/23/2022
 @AndroidEntryPoint
@@ -31,6 +30,19 @@ class RegisterVerifyScreen : Fragment(R.layout.screen_register_verify) {
     private val viewBinding:ScreenRegisterVerifyBinding by viewBinding()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) = viewBinding.include {
+
+
+        viewModel.loadingSharedFlow.onEach {
+            if (it) showProgress() else hideProgress()
+        }.launchIn(lifecycleScope)
+
+        viewModel.errorSharedFlow.onEach {
+            showErrorDialog(it)
+        }.launchIn(lifecycleScope)
+
+        viewModel.messageSharedFlow.onEach {
+            showMessageDialog(it)
+        }.launchIn(lifecycleScope)
 
         smsChecker.onChangeListener = SmsConfirmationView.OnChangeListener { _, isComplete ->
             isCompletedSms = isComplete

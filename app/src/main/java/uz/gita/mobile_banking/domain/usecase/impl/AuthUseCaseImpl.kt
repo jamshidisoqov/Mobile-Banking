@@ -31,10 +31,10 @@ class AuthUseCaseImpl @Inject constructor(
         authRepository.register(RegisterDto(phone, password, firstName, lastName, bornDate, gender))
 
     override fun loginVerify(code: String): Flow<ResultData<HeaderData>> =
-        authRepository.loginVerify(VerifyDto(mySharedPrefs.accessToken, code))
+        authRepository.loginVerify(VerifyDto(mySharedPrefs.tempToken, code))
 
     override fun registerVerify(code: String): Flow<ResultData<HeaderData>> =
-        authRepository.registerVerify(VerifyDto(mySharedPrefs.accessToken, code))
+        authRepository.registerVerify(VerifyDto(mySharedPrefs.tempToken, code))
 
     override fun loginResendCode(): Flow<ResultData<TokenData>> =
         authRepository.loginResendCode(TokenDto(mySharedPrefs.accessToken))

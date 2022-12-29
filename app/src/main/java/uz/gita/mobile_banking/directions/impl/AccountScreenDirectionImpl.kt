@@ -4,6 +4,7 @@ import uz.gita.mobile_banking.data.remote.response.card.CardData
 import uz.gita.mobile_banking.data.remote.response.user.LastTransferData
 import uz.gita.mobile_banking.directions.AccountScreenDirection
 import uz.gita.mobile_banking.navigation.Navigator
+import uz.gita.mobile_banking.presentation.ui.home.HomeScreenDirections
 import javax.inject.Inject
 
 class AccountScreenDirectionImpl @Inject constructor(
@@ -11,7 +12,7 @@ class AccountScreenDirectionImpl @Inject constructor(
 ) : AccountScreenDirection {
 
     override suspend fun navigateToAddCard() {
-        TODO("Not yet implemented")
+        navigator.navigateTo(HomeScreenDirections.actionHomeScreenToAddCardScreen())
     }
 
     override suspend fun navigateToCardDetail(cardData: CardData) {

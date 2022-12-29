@@ -30,16 +30,16 @@
                 android:textStyle="bold"
                 tools:ignore="RelativeOverlap" />
 
-            <androidx.appcompat.widget.AppCompatImageView
+            <ImageView
                 android:id="@+id/image_notification"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/margin_std"
-                android:background="?simpleItemSelectedRippleColor"
                 android:padding="@dimen/margin_std"
-                android:src="@drawable/ic_notification" />
+                android:src="@drawable/ic_notification"
+                tools:ignore="ContentDescription" />
 
         </RelativeLayout>
 

@@ -19,7 +19,6 @@ class PinViewModelImpl @Inject constructor(
     private val useCase: UserUseCase
 ) : PinViewModel, ViewModel() {
 
-
     override val isFirstSharedFlow = MutableSharedFlow<Boolean>()
 
     override val errorSharedFlow  = MutableSharedFlow<String>()
@@ -41,7 +40,7 @@ class PinViewModelImpl @Inject constructor(
 
     override fun getIsFirst() {
         viewModelScope.launch {
-            isFirstSharedFlow.emit(authUseCase.getAccessToken().isNotEmpty())
+            isFirstSharedFlow.emit(authUseCase.getAccessToken().isEmpty())
         }
     }
 

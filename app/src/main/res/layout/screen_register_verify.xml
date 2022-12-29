@@ -67,7 +67,7 @@
             android:layout_height="wrap_content"
             app:scv_codeLength="6"
             app:scv_showCursor="true"
-            app:scv_symbolBackgroundColor="@color/view_bg_color"
+            app:scv_symbolBackgroundColor="#D5D3D3"
             app:scv_symbolBorderActiveColor="@color/app_color"
             app:scv_symbolBorderColor="@color/view_bg_color"
             app:scv_symbolBorderCornerRadius="8dp"
@@ -101,7 +101,6 @@
         app:cornerRadius="@dimen/margin_std"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:shapeAppearanceOverlay="MaterialGitaBankButton" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

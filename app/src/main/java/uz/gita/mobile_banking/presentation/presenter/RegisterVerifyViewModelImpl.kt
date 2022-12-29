@@ -31,7 +31,7 @@ class RegisterVerifyViewModelImpl @Inject constructor(
         viewModelScope.launch {
             if (hasConnection()) {
                 loadingSharedFlow.emit(true)
-                authUseCase.loginVerify(code).collectLatest { result ->
+                authUseCase.registerVerify(code).collectLatest { result ->
                     loadingSharedFlow.emit(false)
                     result.onSuccess {
                         authUseCase.setAccessToken(it.accessToken)

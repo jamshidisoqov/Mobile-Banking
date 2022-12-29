@@ -44,7 +44,7 @@ class LoginScreen : Fragment(R.layout.screen_login) {
             showMessageDialog(it)
         }.launchIn(lifecycleScope)
         inputPhone.textChanges().onEach {
-            boolPhone = it.length >= 17
+            boolPhone = it.length >= 13
             check()
         }.launchIn(viewLifecycleOwner.lifecycleScope)
 

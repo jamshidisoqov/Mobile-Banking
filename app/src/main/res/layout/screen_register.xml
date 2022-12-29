@@ -111,6 +111,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
+            android:maxEms="13"
+            android:maxLength="13"
             android:maxLines="1" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -204,7 +206,6 @@
         app:cornerRadius="@dimen/margin_std"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:shapeAppearanceOverlay="MaterialGitaBankButton" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

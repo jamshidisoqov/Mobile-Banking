@@ -37,6 +37,7 @@ class RegisterViewModelImpl @Inject constructor(
     ) {
         viewModelScope.launch {
             if (hasConnection()) {
+                loadingSharedFlow.emit(true)
                 authUseCase.register(
                     phone = phone,
                     password = password,
@@ -45,6 +46,7 @@ class RegisterViewModelImpl @Inject constructor(
                     bornDate = bornDate,
                     gender = gender
                 ).collectLatest { result ->
+                    loadingSharedFlow.emit(false)
                     result.onSuccess {
                         userUseCase.setFirstName(firstName)
                         userUseCase.setLastName(lastName)

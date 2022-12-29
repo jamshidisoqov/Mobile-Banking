@@ -16,6 +16,7 @@ import uz.gita.mobile_banking.R
 import uz.gita.mobile_banking.databinding.ScreenPinBinding
 import uz.gita.mobile_banking.presentation.presenter.PinViewModelImpl
 import uz.gita.mobile_banking.utils.include
+import uz.gita.mobile_banking.utils.log
 import uz.gita.mobile_banking.utils.showErrorDialog
 import uz.gita.mobile_banking.utils.toast
 
@@ -27,14 +28,13 @@ class PinScreen : Fragment(R.layout.screen_pin) {
 
     private val viewModel: PinViewModel by viewModels<PinViewModelImpl>()
 
-    private var isCompleted: Boolean = true
+    private var isCompleted: Boolean = false
 
     private var isFirst: Boolean = true
 
     private var oldPassword = ""
 
     private var counter = 0
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) = viewBinding.include {
 
@@ -43,6 +43,7 @@ class PinScreen : Fragment(R.layout.screen_pin) {
                 isCompleted = it.length == 4
                 check()
             }.launchIn(viewLifecycleOwner.lifecycleScope)
+
         initView()
 
         viewModel.isFirstSharedFlow.onEach {
@@ -89,19 +90,19 @@ class PinScreen : Fragment(R.layout.screen_pin) {
                 val view = group.getChildAt(j)
                 view.setOnClickListener {
                     if (view is TextView) {
-                        if (isCompleted) {
+                        log("Keldi")
+                        if (!isCompleted) {
                             pinView.append(view.text)
-                        }
-                    } else {
-                        var text = pinView.text.toString()
-                        if (text.isNotEmpty()) {
-                            text = text.substring(0, text.lastIndex)
-                            pinView.setText(text)
+                        } else {
+                            var text = pinView.text.toString()
+                            if (text.isNotEmpty()) {
+                                text = text.substring(0, text.lastIndex)
+                                pinView.setText(text)
+                            }
                         }
                     }
                 }
             }
         }
     }
-
 }

@@ -20,6 +20,7 @@ import uz.gita.mobile_banking.data.remote.api.CardApi
 import uz.gita.mobile_banking.data.remote.api.TransferApi
 import uz.gita.mobile_banking.data.remote.api.UserApi
 import uz.gita.mobile_banking.data.remote.authenticator.TokenAuthenticator
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 // Created by Jamshid Isoqov on 12/22/2022
@@ -42,26 +43,40 @@ object DatabaseModule {
     @[Provides Singleton]
     fun provideClient(
         @ApplicationContext ctx: Context,
-        mySharedPrefs: MySharedPrefs
+        mySharedPrefs: MySharedPrefs,
+        gson: Gson
     ): OkHttpClient = OkHttpClient.Builder()
+        .readTimeout(5000L, TimeUnit.MILLISECONDS)
+        .writeTimeout(5000L, TimeUnit.MILLISECONDS)
         .addInterceptor(ChuckerInterceptor.Builder(ctx).build())
         .addInterceptor { chain ->
             val requestBuilder = chain.request().newBuilder()
-            if (mySharedPrefs.refreshToken.isNotEmpty())
-                requestBuilder.addHeader("token", "")
+            if (mySharedPrefs.accessToken.isNotEmpty())
+                requestBuilder.addHeader("Authorization", "Bearer ${mySharedPrefs.accessToken}")
             val response = chain.proceed(requestBuilder.build())
             response
-        }
-        .authenticator(TokenAuthenticator())
+        }.authenticator(
+            TokenAuthenticator(
+                Retrofit.Builder()
+                    .baseUrl(BuildConfig.BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build()
+                    .create(AuthApi::class.java),
+                mySharedPrefs,
+                gson
+            )
+        )
         .build()
 
 
     @[Provides Singleton]
-    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
-        .baseUrl(BuildConfig.BASE_URL)
-        .client(okHttpClient)
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
+    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(BuildConfig.BASE_URL)
+            .client(okHttpClient)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
 
     @[Provides Singleton]
     fun provideAuthApi(retrofit: Retrofit): AuthApi = retrofit.create(AuthApi::class.java)
@@ -75,6 +90,13 @@ object DatabaseModule {
     @[Provides Singleton]
     fun provideTransferApi(retrofit: Retrofit): TransferApi =
         retrofit.create(TransferApi::class.java)
+
+    @[Provides Singleton]
+    fun provideAuthenticator(
+        authApi: AuthApi,
+        mySharedPrefs: MySharedPrefs,
+        gson: Gson
+    ): TokenAuthenticator = TokenAuthenticator(authApi, mySharedPrefs, gson)
 
 
 }

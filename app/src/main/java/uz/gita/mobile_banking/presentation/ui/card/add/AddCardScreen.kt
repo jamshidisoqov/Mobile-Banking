@@ -65,7 +65,7 @@ class AddCardScreen : Fragment(R.layout.screen_add_card) {
         }.launchIn(viewLifecycleOwner.lifecycleScope)
 
         inputCardNumber.textChanges().onEach {
-            boolCardNumber = it.length >= 19
+            boolCardNumber = it.length >= 16
             tvCardNumber.text = it.toString()
             check()
         }.launchIn(viewLifecycleOwner.lifecycleScope)

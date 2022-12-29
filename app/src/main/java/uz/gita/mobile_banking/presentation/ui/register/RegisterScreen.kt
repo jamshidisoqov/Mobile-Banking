@@ -80,7 +80,7 @@ class RegisterScreen : Fragment(R.layout.screen_register) {
 
         inputPhone.textChanges()
             .onEach {
-                boolPhone = it.length >= 17
+                boolPhone = it.length >= 13
                 check()
             }.launchIn(viewLifecycleOwner.lifecycleScope)
 

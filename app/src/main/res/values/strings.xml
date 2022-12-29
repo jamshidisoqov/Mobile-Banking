@@ -52,4 +52,6 @@
     <string name="_9">9</string>
     <string name="_0">0</string>
     <string name="confirm_new_password">Confirm the new password</string>
+    <string name="input_code">Input pin code</string>
+    <string name="mastercard">Mastercard</string>
 </resources>
