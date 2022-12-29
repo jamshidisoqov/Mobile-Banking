@@ -82,12 +82,13 @@ class TransferViewModelImpl @Inject constructor(
                 loadingSharedFlow.emit(true)
                 transferUseCase.addTransfer(
                     TransferDto(
-                        type = "",
+                        type = "third-card",
                         senderId = cardsList[cardNumber].id.toString(),
                         receiverPan = receiverPan,
                         amount = amount
                     )
                 ).collectLatest { result ->
+                    loadingSharedFlow.emit(false)
                     result.onSuccess {
                         openConfirmDialog.emit(Pair(cardsList[cardNumber], it.token))
                     }.onMessage {

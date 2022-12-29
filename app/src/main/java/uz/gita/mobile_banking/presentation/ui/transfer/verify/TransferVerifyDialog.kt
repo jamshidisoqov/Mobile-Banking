@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.fraggjkee.smsconfirmationview.SmsConfirmationView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -21,6 +22,7 @@ import uz.gita.mobile_banking.presentation.presenter.TransferVerifyViewModelImpl
 import uz.gita.mobile_banking.utils.*
 
 // Created by Jamshid Isoqov on 12/29/2022
+@AndroidEntryPoint
 class TransferVerifyDialog(
     private val cardData: CardData,
     private val recipientName: String,

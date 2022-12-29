@@ -68,7 +68,7 @@ class AccountsScreen : Fragment(R.layout.screen_accounts) {
         }.launchIn(lifecycleScope)
 
         viewModel.cardsList.onEach {
-            //cardAdapter.submitList(it)
+            cardAdapter.submitList(it)
         }.launchIn(viewLifecycleOwner.lifecycleScope)
 
         viewModel.lastTransactions.onEach {

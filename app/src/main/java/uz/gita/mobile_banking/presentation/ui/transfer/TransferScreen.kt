@@ -53,11 +53,7 @@ class TransferScreen : Fragment(R.layout.screen_transfer) {
 
         cardAdapter = CardAdapter()
 
-        pagerCards.adapter = cardAdapter
-
-        pagerCards.currentPageCallback {
-            current = it
-        }
+        listCards.adapter = cardAdapter
 
         viewModel.cardFlow.onEach {
             cardAdapter.submitList(it)
@@ -68,14 +64,14 @@ class TransferScreen : Fragment(R.layout.screen_transfer) {
         }.launchIn(lifecycleScope)
 
         inputAmount.textChanges().onEach {
-            boolAmount = it.toString().toDecimalFormat().isNotEmpty()
+            boolAmount = it.length >= 4
             check()
         }.launchIn(viewLifecycleOwner.lifecycleScope)
 
         inputSendTo.textChanges().onEach {
-            boolSendTo = it.length == 19
+            boolSendTo = inputSendTo.rawText.length == 16
             if (boolSendTo) {
-                viewModel.getUser(it.toString())
+                viewModel.getUser(inputSendTo.rawText)
             }
             check()
         }.launchIn(viewLifecycleOwner.lifecycleScope)
@@ -84,7 +80,7 @@ class TransferScreen : Fragment(R.layout.screen_transfer) {
             val openDialog = TransferVerifyDialog(
                 cardData = it.first,
                 recipientName = tvIdentifiedUser.text.toString(),
-                recipientCardNumber = inputSendTo.text.toString(),
+                recipientCardNumber = inputSendTo.rawText,
                 amount = inputAmount.text.toString(),
                 token = it.second
             )
@@ -92,14 +88,16 @@ class TransferScreen : Fragment(R.layout.screen_transfer) {
                 findNavController().navigateUp()
             }
             openDialog.show(childFragmentManager, "transfer verify")
-        }
+        }.launchIn(lifecycleScope)
 
         btnTransfer.clicks()
             .onEach {
-                val amount = inputAmount.text.toString().toDecimalFormat().toInt()
+                val amount = inputAmount.text.toString().getDigitOnly()
                 val card = inputSendTo.rawText.toString()
                 viewModel.transferVerify(amount, card, current)
             }.launchIn(lifecycleScope)
+
+        viewModel.getCards()
 
     }
 
