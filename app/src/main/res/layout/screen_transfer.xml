@@ -138,12 +138,12 @@
 
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_add_card"
+        android:id="@+id/btn_transfer"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_margin="@dimen/margin_component"
         android:enabled="false"
-        android:text="@string/transfer_money"
+        android:text="@string/next"
         app:cornerRadius="@dimen/margin_std"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -4,14 +4,8 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
-import uz.gita.mobile_banking.domain.usecase.AuthUseCase
-import uz.gita.mobile_banking.domain.usecase.CardUseCase
-import uz.gita.mobile_banking.domain.usecase.StartScreenUseCase
-import uz.gita.mobile_banking.domain.usecase.UserUseCase
-import uz.gita.mobile_banking.domain.usecase.impl.AuthUseCaseImpl
-import uz.gita.mobile_banking.domain.usecase.impl.CardUseCaseImpl
-import uz.gita.mobile_banking.domain.usecase.impl.StartScreenUseCaseImpl
-import uz.gita.mobile_banking.domain.usecase.impl.UserUseCaseImpl
+import uz.gita.mobile_banking.domain.usecase.*
+import uz.gita.mobile_banking.domain.usecase.impl.*
 
 // Created by Jamshid Isoqov on 12/26/2022
 @Module
@@ -29,5 +23,8 @@ interface UseCaseModule {
 
     @Binds
     fun bindCardUseCase(impl: CardUseCaseImpl): CardUseCase
+
+    @Binds
+    fun bindTransferUseCase(impl: TransferUseCaseImpl): TransferUseCase
 
 }

@@ -32,6 +32,8 @@ object DatabaseModule {
     private const val SHARED_MODE: Int = Context.MODE_PRIVATE
 
 
+    lateinit var retrofit: Retrofit
+
     @[Provides Singleton]
     fun provideSharedPreferences(@ApplicationContext ctx: Context): SharedPreferences {
         return ctx.getSharedPreferences(SHARED_NAME, SHARED_MODE)
@@ -55,17 +57,14 @@ object DatabaseModule {
                 requestBuilder.addHeader("Authorization", "Bearer ${mySharedPrefs.accessToken}")
             val response = chain.proceed(requestBuilder.build())
             response
-        }.authenticator(
-            TokenAuthenticator(
-                Retrofit.Builder()
+        }.also {
+            if (!this::retrofit.isInitialized) {
+                retrofit = Retrofit.Builder()
                     .baseUrl(BuildConfig.BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
-                    .create(AuthApi::class.java),
-                mySharedPrefs,
-                gson
-            )
-        )
+            }
+        }.authenticator(TokenAuthenticator(retrofit.create(AuthApi::class.java),mySharedPrefs,gson))
         .build()
 
 
