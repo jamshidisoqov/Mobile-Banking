@@ -6,6 +6,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
+import uz.gita.mobile_banking.MainActivity
 import uz.gita.mobile_banking.directions.PinScreenDirection
 import uz.gita.mobile_banking.domain.usecase.AuthUseCase
 import uz.gita.mobile_banking.domain.usecase.UserUseCase
@@ -21,7 +22,9 @@ class PinViewModelImpl @Inject constructor(
 
     override val isFirstSharedFlow = MutableSharedFlow<Boolean>()
 
-    override val errorSharedFlow  = MutableSharedFlow<String>()
+    override val errorSharedFlow = MutableSharedFlow<String>()
+
+    override val backSharedFlow = MutableSharedFlow<Boolean>()
 
 
     override fun navigateToMain(password: String) {
@@ -46,9 +49,13 @@ class PinViewModelImpl @Inject constructor(
 
     override fun check(password: String) {
         viewModelScope.launch {
-            if (useCase.getPassword()==password){
-                direction.navigateToHome()
-            }else{
+            if (useCase.getPassword() == password) {
+                if (MainActivity.isFirstApp)
+                    direction.navigateToHome()
+                else{
+                    backSharedFlow.emit(true)
+                }
+            } else {
                 errorSharedFlow.emit("Incorrect password")
             }
         }

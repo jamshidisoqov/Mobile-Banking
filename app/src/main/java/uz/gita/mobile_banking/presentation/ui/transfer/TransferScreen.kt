@@ -7,6 +7,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import ru.ldralighieri.corbind.view.clicks
@@ -33,6 +35,7 @@ class TransferScreen : Fragment(R.layout.screen_transfer) {
 
     private lateinit var cardAdapter: CardAdapter
 
+    @OptIn(FlowPreview::class)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) = viewBinding.include {
 
         viewModel.loadingSharedFlow.onEach {
@@ -61,18 +64,18 @@ class TransferScreen : Fragment(R.layout.screen_transfer) {
             tvIdentifiedUser.text = it
         }.launchIn(lifecycleScope)
 
-        inputAmount.textChanges().onEach {
+        inputAmount.textChanges().debounce(100L).onEach {
             boolAmount = it.length >= 4
             check()
         }.launchIn(viewLifecycleOwner.lifecycleScope)
 
-        inputSendTo.textChanges().onEach {
+        inputSendTo.textChanges().debounce(100L).onEach {
             boolSendTo = inputSendTo.rawText.length == 16
             if (boolSendTo) {
                 viewModel.getUser(inputSendTo.rawText)
             }
             check()
-        }.launchIn(viewLifecycleOwner.lifecycleScope)
+        }.launchIn(lifecycleScope)
 
         viewModel.openConfirmDialog.onEach {
             viewModel.navigateToVerify(

@@ -26,6 +26,8 @@ class MainActivity : AppCompatActivity() {
 
     private var job: Job? = null
 
+    private var isOpenPin = false
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,18 +49,27 @@ class MainActivity : AppCompatActivity() {
         super.onStop()
         job?.cancel()
         job = lifecycleScope.launch {
-            delay(10_000)
-            findNavController(R.id.fragmentContainerView).navigate(R.id.action_global_pinScreen)
+            delay(5000)
+            isOpenPin = true
         }
     }
 
     override fun onResume() {
         super.onResume()
         job?.cancel()
+        if (isOpenPin) {
+            isOpenPin = false
+            isFirstApp = false
+            findNavController(R.id.fragmentContainerView).navigate(R.id.action_global_pinScreen)
+        }
     }
 
 
     fun hideProgress() {
         dialog.cancel()
+    }
+
+    companion object {
+        var isFirstApp = true
     }
 }

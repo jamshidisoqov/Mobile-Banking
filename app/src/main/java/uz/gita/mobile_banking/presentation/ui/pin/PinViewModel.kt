@@ -9,6 +9,8 @@ interface PinViewModel {
 
     val errorSharedFlow:SharedFlow<String>
 
+    val backSharedFlow:SharedFlow<Boolean>
+
     fun navigateToMain(password: String)
 
     fun savePassword(password: String)
