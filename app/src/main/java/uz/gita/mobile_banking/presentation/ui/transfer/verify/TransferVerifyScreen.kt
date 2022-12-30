@@ -1,15 +1,14 @@
 package uz.gita.mobile_banking.presentation.ui.transfer.verify
 
 import android.annotation.SuppressLint
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.fraggjkee.smsconfirmationview.SmsConfirmationView
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
@@ -23,36 +22,41 @@ import uz.gita.mobile_banking.utils.*
 
 // Created by Jamshid Isoqov on 12/29/2022
 @AndroidEntryPoint
-class TransferVerifyDialog(
-    private val cardData: CardData,
-    private val recipientName: String,
-    private val recipientCardNumber: String,
-    private val amount: String,
-    private val token: String
-) : BottomSheetDialogFragment(R.layout.screen_transfer_verify) {
+class TransferVerifyScreen : Fragment(R.layout.screen_transfer_verify) {
+
+    private val viewModel: TransferVerifyViewModel by viewModels<TransferVerifyViewModelImpl>()
 
     private val viewBinding: ScreenTransferVerifyBinding by viewBinding()
 
-    private var transferClickListener: (() -> Unit)? = null
+    private val args: TransferVerifyScreenArgs by navArgs()
+
+    private lateinit var cardData: CardData
+
+    private lateinit var recipientName: String
+
+    private lateinit var recipientCardNumber: String
+
+    private lateinit var amount: String
 
     private var isCompletedSms: Boolean = false
 
     private var isFinishedTime: Boolean = false
-
-    private val viewModel: TransferVerifyViewModel by viewModels<TransferVerifyViewModelImpl>()
-
-    fun setTransferClickListener(block: () -> Unit) {
-        transferClickListener = block
-    }
 
     private var verifyToken: String = ""
 
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) = viewBinding.include {
 
-        verifyToken = token
+        verifyToken = args.token
 
-        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        recipientName = args.recipientName
+
+        recipientCardNumber = args.recipientPan
+
+        cardData = args.cardData
+
+        amount = args.amount.toString()
+
 
         viewModel.loadingSharedFlow.onEach {
             if (it) showProgress() else hideProgress()
@@ -83,7 +87,7 @@ class TransferVerifyDialog(
         }.launchIn(lifecycleScope)
 
         viewModel.backSharedFlow.onEach {
-            transferClickListener?.invoke()
+           viewModel.navigateToMain()
         }.launchIn(lifecycleScope)
 
         viewModel.tokenFlow.onEach {

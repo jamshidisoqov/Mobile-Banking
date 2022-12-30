@@ -32,4 +32,10 @@ interface DirectionsModule {
 
     @Binds
     fun bindAccountScreen(impl: AccountScreenDirectionImpl): AccountScreenDirection
+
+    @Binds
+    fun bindTransferScreen(impl: TransferScreenDirectionImp): TransferScreenDirection
+
+    @Binds
+    fun bindTransferVerifyScreen(impl: TransferVerifyScreenDirectionImpl): TransferVerifyScreenDirection
 }

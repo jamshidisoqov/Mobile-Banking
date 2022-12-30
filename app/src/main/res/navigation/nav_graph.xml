@@ -94,5 +94,34 @@
         android:id="@+id/transferScreen"
         android:name="uz.gita.mobile_banking.presentation.ui.transfer.TransferScreen"
         android:label="TransferScreen"
-        tools:layout="@layout/screen_transfer" /><action android:id="@+id/action_global_pinScreen" app:destination="@id/pinScreen"/>
+        tools:layout="@layout/screen_transfer" >
+        <action
+            android:id="@+id/action_transferScreen_to_transferVerifyScreen"
+            app:destination="@id/transferVerifyScreen" />
+    </fragment><action android:id="@+id/action_global_pinScreen" app:destination="@id/pinScreen"/>
+    <fragment
+        android:id="@+id/transferVerifyScreen"
+        tools:layout="@layout/screen_transfer_verify"
+        android:name="uz.gita.mobile_banking.presentation.ui.transfer.verify.TransferVerifyScreen"
+        android:label="TransferVerifyScreen" >
+        <argument
+            android:name="card_data"
+            app:argType="uz.gita.mobile_banking.data.remote.response.card.CardData" />
+        <argument
+            android:name="recipient_name"
+            app:argType="string" />
+        <argument
+            android:name="recipient_pan"
+            app:argType="string" />
+        <argument
+            android:name="amount"
+            app:argType="integer" />
+        <argument
+            android:name="token"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_transferVerifyScreen_to_homeScreen"
+            app:destination="@id/homeScreen"
+            app:popUpTo="@id/homeScreen" />
+    </fragment>
 </navigation>

@@ -20,4 +20,12 @@ interface TransferViewModel : BaseViewModel {
 
     fun transferVerify(amount: Int, receiverPan: String, cardNumber: Int)
 
+    fun navigateToVerify(
+        cardData: CardData,
+        receiverName: String,
+        receiverPan: String,
+        amount: Int,
+        token: String
+    )
+
 }

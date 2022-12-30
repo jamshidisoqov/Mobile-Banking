@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import uz.gita.mobile_banking.data.remote.request.transfer.TokenDto
 import uz.gita.mobile_banking.data.remote.request.transfer.TransferVerifyDto
+import uz.gita.mobile_banking.directions.TransferVerifyScreenDirection
 import uz.gita.mobile_banking.domain.usecase.TransferUseCase
 import uz.gita.mobile_banking.presentation.ui.transfer.verify.TransferVerifyViewModel
 import uz.gita.mobile_banking.utils.getMessage
@@ -17,7 +18,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TransferVerifyViewModelImpl @Inject constructor(
-    private val transferUseCase: TransferUseCase
+    private val transferUseCase: TransferUseCase,
+    private val direction: TransferVerifyScreenDirection
 ) : TransferVerifyViewModel, ViewModel() {
 
     override val loadingSharedFlow = MutableSharedFlow<Boolean>()
@@ -75,6 +77,12 @@ class TransferVerifyViewModelImpl @Inject constructor(
             } else {
                 messageSharedFlow.emit("No internet connection")
             }
+        }
+    }
+
+    override fun navigateToMain() {
+        viewModelScope.launch {
+            direction.navigateToMain()
         }
     }
 }

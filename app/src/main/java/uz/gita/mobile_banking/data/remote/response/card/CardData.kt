@@ -1,7 +1,10 @@
 package uz.gita.mobile_banking.data.remote.response.card
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class CardData(
     val id: Int,
     val amount: Int,
@@ -16,4 +19,4 @@ data class CardData(
     val pan: String,
     @SerializedName(value = "theme-type")
     val themeType: Int
-)
+):Parcelable

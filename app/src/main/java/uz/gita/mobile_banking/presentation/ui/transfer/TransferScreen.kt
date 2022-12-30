@@ -5,7 +5,6 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -16,7 +15,6 @@ import uz.gita.mobile_banking.R
 import uz.gita.mobile_banking.databinding.ScreenTransferBinding
 import uz.gita.mobile_banking.presentation.presenter.TransferViewModelImpl
 import uz.gita.mobile_banking.presentation.ui.home.pages.accounts.adapter.CardAdapter
-import uz.gita.mobile_banking.presentation.ui.transfer.verify.TransferVerifyDialog
 import uz.gita.mobile_banking.utils.*
 
 // Created by Jamshid Isoqov on 12/25/2022
@@ -77,17 +75,13 @@ class TransferScreen : Fragment(R.layout.screen_transfer) {
         }.launchIn(viewLifecycleOwner.lifecycleScope)
 
         viewModel.openConfirmDialog.onEach {
-            val openDialog = TransferVerifyDialog(
+            viewModel.navigateToVerify(
                 cardData = it.first,
-                recipientName = tvIdentifiedUser.text.toString(),
-                recipientCardNumber = inputSendTo.rawText,
-                amount = inputAmount.text.toString(),
+                receiverName = tvIdentifiedUser.text.toString(),
+                receiverPan = inputSendTo.rawText,
+                amount = inputAmount.text.toString().getDigitOnly(),
                 token = it.second
             )
-            openDialog.setTransferClickListener {
-                findNavController().navigateUp()
-            }
-            openDialog.show(childFragmentManager, "transfer verify")
         }.launchIn(lifecycleScope)
 
         btnTransfer.clicks()

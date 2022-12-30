@@ -17,4 +17,6 @@ interface TransferVerifyViewModel : BaseViewModel {
 
     fun resendCode()
 
+    fun navigateToMain()
+
 }
