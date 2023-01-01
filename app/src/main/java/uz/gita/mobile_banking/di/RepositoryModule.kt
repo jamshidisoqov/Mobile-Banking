@@ -4,14 +4,8 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import uz.gita.mobile_banking.domain.repository.AuthRepository
-import uz.gita.mobile_banking.domain.repository.CardRepository
-import uz.gita.mobile_banking.domain.repository.TransferRepository
-import uz.gita.mobile_banking.domain.repository.UserRepository
-import uz.gita.mobile_banking.domain.repository.impl.AuthRepositoryImpl
-import uz.gita.mobile_banking.domain.repository.impl.CardRepositoryImpl
-import uz.gita.mobile_banking.domain.repository.impl.TransferRepositoryImpl
-import uz.gita.mobile_banking.domain.repository.impl.UserRepositoryImpl
+import uz.gita.mobile_banking.domain.repository.*
+import uz.gita.mobile_banking.domain.repository.impl.*
 import javax.inject.Singleton
 
 // Created by Jamshid Isoqov on 12/25/2022
@@ -31,4 +25,6 @@ interface RepositoryModule {
     @[Binds Singleton]
     fun bindTransferRepository(imp:TransferRepositoryImpl):TransferRepository
 
+    @[Binds Singleton]
+    fun bindExchangeRepository(impl:ExchangeRepositoryImpl):ExchangeRepository
 }

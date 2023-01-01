@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import uz.gita.mobile_banking.data.remote.response.card.CardData
@@ -33,6 +34,8 @@ class AccountScreenViewModelImpl @Inject constructor(
     override val cardsList = MutableStateFlow<List<CardData>>(emptyList())
 
     override val lastTransactions = MutableStateFlow<List<LastTransferData>>(emptyList())
+
+    override val openMoreDialog = MutableSharedFlow<Unit>()
 
 
     override fun getCards() {
@@ -93,7 +96,7 @@ class AccountScreenViewModelImpl @Inject constructor(
 
     override fun clickMore() {
         viewModelScope.launch {
-            //Todo click more
+           openMoreDialog.emit(Unit)
         }
     }
 

@@ -38,10 +38,10 @@ class MenuDialog : BottomSheetDialogFragment(R.layout.dialog_bottom_menu) {
 
         viewModel.openQrScannerFlow.onEach {
             dismiss()
-            //Todo open qr
         }.launchIn(lifecycleScope)
 
         adapter.setItemClickListener {
+            dismiss()
             viewModel.navigateTo(it.menu)
         }
         adapter.submitList(Constants.moreMenuList)

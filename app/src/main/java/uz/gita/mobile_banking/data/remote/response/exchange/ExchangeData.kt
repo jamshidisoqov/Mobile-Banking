@@ -13,7 +13,7 @@ data class ExchangeData(
     val exchangeUzName: String,
     @SerializedName("CcyNm_UZC")
     val exchangeKirName: String,
-    @SerializedName("code")
+    @SerializedName("Code")
     val code: String,
     @SerializedName("Date")
     val date: String,

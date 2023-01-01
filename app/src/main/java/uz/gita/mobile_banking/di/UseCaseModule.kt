@@ -27,4 +27,7 @@ interface UseCaseModule {
     @Binds
     fun bindTransferUseCase(impl: TransferUseCaseImpl): TransferUseCase
 
+    @Binds
+    fun bindExchangeUseCase(impl: GetAllExchangesImpl): GetAllExchanges
+
 }

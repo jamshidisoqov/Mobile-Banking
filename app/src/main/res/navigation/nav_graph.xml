@@ -40,6 +40,9 @@
         <action
             android:id="@+id/action_homeScreen_to_transferScreen"
             app:destination="@id/transferScreen" />
+        <action
+            android:id="@+id/action_homeScreen_to_exchangeScreen"
+            app:destination="@id/exchangeScreen" />
     </fragment>
     <fragment
         android:id="@+id/loginScreen"
@@ -124,4 +127,9 @@
             app:destination="@id/homeScreen"
             app:popUpTo="@id/homeScreen" />
     </fragment>
+    <fragment
+        android:id="@+id/exchangeScreen"
+        tools:layout="@layout/screen_exchange"
+        android:name="uz.gita.mobile_banking.presentation.ui.exchange.ExchangeScreen"
+        android:label="ExchangeScreen" />
 </navigation>

@@ -59,7 +59,7 @@ object DatabaseModule {
             if (!this::retrofit.isInitialized) {
                 retrofit = Retrofit.Builder()
                     .baseUrl(BuildConfig.BASE_URL_EXCHANGE)
-                    .addConverterFactory(GsonConverterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create(gson))
                     .build()
             }
         }.authenticator(
@@ -73,19 +73,22 @@ object DatabaseModule {
 
 
     @[Provides Singleton]
-    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
+    fun provideRetrofit(
+        okHttpClient: OkHttpClient,
+        gson: Gson
+    ): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
             .client(okHttpClient)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
     }
 
     @[Provides Singleton Named("exchange")]
-    fun provideExchangeRetrofit(): Retrofit =
+    fun provideExchangeRetrofit(gson: Gson): Retrofit =
         Retrofit.Builder()
-            .baseUrl(BuildConfig.BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl(BuildConfig.BASE_URL_EXCHANGE)
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
 
     @[Provides Singleton]

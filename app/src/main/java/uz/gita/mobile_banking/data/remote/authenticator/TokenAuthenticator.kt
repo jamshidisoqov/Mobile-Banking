@@ -11,6 +11,8 @@ import uz.gita.mobile_banking.data.local.prefs.MySharedPrefs
 import uz.gita.mobile_banking.data.remote.api.AuthApi
 import uz.gita.mobile_banking.data.remote.request.auth.UpdateTokenDto
 import uz.gita.mobile_banking.utils.func
+import uz.gita.mobile_banking.utils.getMessage
+import uz.gita.mobile_banking.utils.log
 
 // Created by Jamshid Isoqov on 12/22/2022
 class TokenAuthenticator(
@@ -33,6 +35,12 @@ class TokenAuthenticator(
                 token = it.accessToken
                 mySharedPrefs.accessToken = it.accessToken
                 mySharedPrefs.refreshToken = it.refreshToken
+            }.onMessage {
+                println(it)
+                log(it)
+            }.onError {
+                println(it.getMessage())
+                log(it.getMessage())
             }
         }
         return token

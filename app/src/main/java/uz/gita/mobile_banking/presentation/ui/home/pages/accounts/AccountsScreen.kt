@@ -18,6 +18,7 @@ import uz.gita.mobile_banking.databinding.ScreenAccountsBinding
 import uz.gita.mobile_banking.presentation.presenter.AccountScreenViewModelImpl
 import uz.gita.mobile_banking.presentation.ui.home.pages.accounts.adapter.CardAdapter
 import uz.gita.mobile_banking.presentation.ui.home.pages.accounts.adapter.LastTransfersAdapter
+import uz.gita.mobile_banking.presentation.ui.home.pages.accounts.dialog.MenuDialog
 import uz.gita.mobile_banking.utils.*
 
 // Created by Jamshid Isoqov on 12/24/2022
@@ -70,6 +71,11 @@ class AccountsScreen : Fragment(R.layout.screen_accounts) {
         viewModel.cardsList.onEach {
             cardAdapter.submitList(it)
         }.launchIn(viewLifecycleOwner.lifecycleScope)
+
+        viewModel.openMoreDialog.onEach {
+            val dialog = MenuDialog()
+            dialog.show(childFragmentManager,"menu dialog")
+        }.launchIn(lifecycleScope)
 
         viewModel.lastTransactions.onEach {
             lastTransfersAdapter.submitList(it)
