@@ -43,7 +43,7 @@ class PinViewModelImpl @Inject constructor(
 
     override fun getIsFirst() {
         viewModelScope.launch {
-            isFirstSharedFlow.emit(authUseCase.getAccessToken().isEmpty())
+            isFirstSharedFlow.emit(useCase.getPassword().isEmpty())
         }
     }
 

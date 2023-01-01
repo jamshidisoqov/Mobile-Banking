@@ -38,4 +38,7 @@ interface DirectionsModule {
 
     @Binds
     fun bindTransferVerifyScreen(impl: TransferVerifyScreenDirectionImpl): TransferVerifyScreenDirection
+
+    @Binds
+    fun bindMenuDialog(impl: MenuDialogDirectionImpl):MenuDialogDirection
 }

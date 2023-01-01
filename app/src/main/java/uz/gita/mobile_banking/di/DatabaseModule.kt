@@ -15,12 +15,10 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import uz.gita.mobile_banking.BuildConfig
 import uz.gita.mobile_banking.data.local.prefs.MySharedPrefs
-import uz.gita.mobile_banking.data.remote.api.AuthApi
-import uz.gita.mobile_banking.data.remote.api.CardApi
-import uz.gita.mobile_banking.data.remote.api.TransferApi
-import uz.gita.mobile_banking.data.remote.api.UserApi
+import uz.gita.mobile_banking.data.remote.api.*
 import uz.gita.mobile_banking.data.remote.authenticator.TokenAuthenticator
 import java.util.concurrent.TimeUnit
+import javax.inject.Named
 import javax.inject.Singleton
 
 // Created by Jamshid Isoqov on 12/22/2022
@@ -60,11 +58,17 @@ object DatabaseModule {
         }.also {
             if (!this::retrofit.isInitialized) {
                 retrofit = Retrofit.Builder()
-                    .baseUrl(BuildConfig.BASE_URL)
+                    .baseUrl(BuildConfig.BASE_URL_EXCHANGE)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
             }
-        }.authenticator(TokenAuthenticator(retrofit.create(AuthApi::class.java),mySharedPrefs,gson))
+        }.authenticator(
+            TokenAuthenticator(
+                retrofit.create(AuthApi::class.java),
+                mySharedPrefs,
+                gson
+            )
+        )
         .build()
 
 
@@ -76,6 +80,13 @@ object DatabaseModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
+
+    @[Provides Singleton Named("exchange")]
+    fun provideExchangeRetrofit(): Retrofit =
+        Retrofit.Builder()
+            .baseUrl(BuildConfig.BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
 
     @[Provides Singleton]
     fun provideAuthApi(retrofit: Retrofit): AuthApi = retrofit.create(AuthApi::class.java)
@@ -96,6 +107,10 @@ object DatabaseModule {
         mySharedPrefs: MySharedPrefs,
         gson: Gson
     ): TokenAuthenticator = TokenAuthenticator(authApi, mySharedPrefs, gson)
+
+    @[Provides Singleton]
+    fun provideExchangeApi(@Named("exchange") retrofit: Retrofit): ExchangeApi =
+        retrofit.create(ExchangeApi::class.java)
 
 
 }
