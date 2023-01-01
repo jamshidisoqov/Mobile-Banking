@@ -10,16 +10,16 @@
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_eng_name"
         android:layout_width="0dp"
-        app:layout_constraintWidth_percent="0.4"
-        android:ellipsize="marquee"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
+        android:ellipsize="marquee"
         android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.4"
         tools:text="Us Dollar" />
 
     <ImageView
@@ -28,10 +28,10 @@
         android:layout_height="40dp"
         android:padding="4dp"
         android:src="@drawable/ic_down"
-        app:layout_constraintHorizontal_bias="0.55"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/tv_rate"
+        app:layout_constraintHorizontal_bias="0.55"
+        app:layout_constraintStart_toEndOf="@id/tv_eng_name"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription" />
 

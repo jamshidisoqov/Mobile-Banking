@@ -25,7 +25,7 @@ android {
 
         debug {
             buildConfigField "String", "BASE_URL", "\"http://143.198.48.222:84/v1/mobile-bank/\""
-            buildConfigField "String", "BASE_URL_EXCHANGE", "\"http://cbu.uz/uzc/\""
+            buildConfigField "String", "BASE_URL_EXCHANGE", "\"http://cbu.uz/\""
         }
         release {
             minifyEnabled false
