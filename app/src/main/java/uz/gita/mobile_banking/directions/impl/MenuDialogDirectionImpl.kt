@@ -13,7 +13,7 @@ class MenuDialogDirectionImpl @Inject constructor(
     }
 
     override suspend fun navigateToHistory() {
-        // TODO() navigate to
+       navigator.navigateTo(HomeScreenDirections.actionHomeScreenToHistoryScreen())
     }
 
     override suspend fun navigateToCards() {

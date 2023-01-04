@@ -16,15 +16,15 @@ class AccountScreenDirectionImpl @Inject constructor(
     }
 
     override suspend fun navigateToCardDetail(cardData: CardData) {
-        TODO("Not yet implemented")
+        navigator.navigateTo(HomeScreenDirections.actionHomeScreenToCardDetailsScreen(cardData))
     }
 
     override suspend fun navigateToNotification() {
-        TODO("Not yet implemented")
+
     }
 
     override suspend fun navigateToPayment() {
-        TODO("Not yet implemented")
+
     }
 
     override suspend fun navigateToSend() {
@@ -32,10 +32,10 @@ class AccountScreenDirectionImpl @Inject constructor(
     }
 
     override suspend fun navigateToTransferDetail(transferData: LastTransferData) {
-        TODO("Not yet implemented")
+
     }
 
     override suspend fun navigateToSearch() {
-        TODO("Not yet implemented")
+
     }
 }

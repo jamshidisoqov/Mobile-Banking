@@ -1,9 +1,12 @@
 package uz.gita.mobile_banking.domain.usecase
 
+import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow
 import uz.gita.mobile_banking.data.remote.request.transfer.*
 import uz.gita.mobile_banking.data.remote.response.auth.TokenData
+import uz.gita.mobile_banking.data.remote.response.card.CardData
 import uz.gita.mobile_banking.data.remote.response.transfer.PanData
+import uz.gita.mobile_banking.data.remote.response.transfer.TransferData
 import uz.gita.mobile_banking.data.remote.response.transfer.TransferFreeData
 import uz.gita.mobile_banking.data.remote.response.transfer.TransferHistoryData
 import uz.gita.mobile_banking.data.remote.response.user.MessageData
@@ -24,7 +27,9 @@ interface TransferUseCase {
     fun getTransfers(
         size: Int,
         currentPage: Int
-    ): Flow<ResultData<TransferHistoryData>>
+    ): Flow<PagingData<TransferData>>
 
     fun resendTransfer(tokenDto: TokenDto): Flow<ResultData<TokenData>>
+
+    fun getTransfersByCard(cardData: CardData):Flow<PagingData<TransferData>>
 }

@@ -120,4 +120,6 @@ dependencies {
     implementation 'com.github.sparrow007:carouselrecyclerview:1.2.5'
 
     implementation "androidx.paging:paging-runtime:$paging_version"
+
+    implementation 'com.github.razir.progressbutton:progressbutton:2.1.0'
 }

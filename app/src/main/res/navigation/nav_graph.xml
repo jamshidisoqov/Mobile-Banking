@@ -43,6 +43,12 @@
         <action
             android:id="@+id/action_homeScreen_to_exchangeScreen"
             app:destination="@id/exchangeScreen" />
+        <action
+            android:id="@+id/action_homeScreen_to_historyScreen"
+            app:destination="@id/historyScreen" />
+        <action
+            android:id="@+id/action_homeScreen_to_cardDetailsScreen"
+            app:destination="@id/cardDetailsScreen" />
     </fragment>
     <fragment
         android:id="@+id/loginScreen"
@@ -132,4 +138,18 @@
         tools:layout="@layout/screen_exchange"
         android:name="uz.gita.mobile_banking.presentation.ui.exchange.ExchangeScreen"
         android:label="ExchangeScreen" />
+    <fragment
+        android:id="@+id/historyScreen"
+        tools:layout="@layout/screen_history"
+        android:name="uz.gita.mobile_banking.presentation.ui.history.HistoryScreen"
+        android:label="HistoryScreen" />
+    <fragment
+        android:id="@+id/cardDetailsScreen"
+        tools:layout="@layout/screen_card_detail"
+        android:name="uz.gita.mobile_banking.presentation.ui.card.detail.CardDetailsScreen"
+        android:label="CardDetailsScreen" >
+        <argument
+            android:name="card_data"
+            app:argType="uz.gita.mobile_banking.data.remote.response.card.CardData" />
+    </fragment>
 </navigation>

@@ -1,34 +1,36 @@
-package uz.gita.mobile_banking.presentation.ui.history
+package uz.gita.mobile_banking.presentation.ui.card.detail
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import uz.gita.mobile_banking.R
-import uz.gita.mobile_banking.databinding.ScreenHistoryBinding
-import uz.gita.mobile_banking.presentation.presenter.HistoryViewModelImpl
+import uz.gita.mobile_banking.databinding.ScreenCardDetailBinding
+import uz.gita.mobile_banking.presentation.presenter.CardDetailViewModelImpl
 import uz.gita.mobile_banking.presentation.ui.history.adapter.HistoryAdapter
 import uz.gita.mobile_banking.utils.*
 
-// Created by Jamshid Isoqov on 1/3/2023
+// Created by Jamshid Isoqov on 1/4/2023
 @AndroidEntryPoint
-class HistoryScreen : Fragment(R.layout.screen_history) {
+class CardDetailsScreen : Fragment(R.layout.screen_card_detail) {
 
-    private val viewBinding: ScreenHistoryBinding by viewBinding()
+    private val viewBinding: ScreenCardDetailBinding by viewBinding()
 
-    private val viewModel: HistoryViewModel by viewModels<HistoryViewModelImpl>()
+    private val viewModel: CardDetailViewModel by viewModels<CardDetailViewModelImpl>()
 
     private val adapter: HistoryAdapter by lazy(LazyThreadSafetyMode.NONE) {
         HistoryAdapter()
     }
 
+    private val args: CardDetailsScreenArgs by navArgs()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) = viewBinding.include {
-        listHistory.adapter = adapter
 
         viewModel.loadingSharedFlow.onEach {
             if (it) showProgress() else hideProgress()
@@ -42,12 +44,23 @@ class HistoryScreen : Fragment(R.layout.screen_history) {
             showMessageDialog(it)
         }.launchIn(lifecycleScope)
 
-        viewModel.transferHistoryFlow.onEach {
-            adapter.submitData(it)
-        }.launchIn(viewLifecycleOwner.lifecycleScope)
+        val cardData = args.cardData
+        listTransfers.adapter = adapter
 
-        viewModel.getTransfers()
+        tvOwner.text = cardData.owner
 
+        containerCard.include {
+
+            tvCardNumber.text = cardData.pan.getCardNumber()
+
+            tvCardExpireDate.text =
+                "${cardData.expiredMonth}".combine("/").combine("${cardData.expiredYear}")
+
+            tvBalance.text = cardData.amount.toDouble().getFinanceType()
+
+        }
+        viewModel.getTransfersByCard(cardData)
     }
+
 
 }

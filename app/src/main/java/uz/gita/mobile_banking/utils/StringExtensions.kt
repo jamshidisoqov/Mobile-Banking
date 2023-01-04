@@ -27,14 +27,18 @@ fun String.toDate(): Date {
 
 fun String.combine(s2: String) = "$this $s2"
 
-fun String.getDigitOnly():Int{
+fun String.getDigitOnly(): Int {
     val builder = StringBuilder()
-    for (i in this){
-        if (i.isDigit()){
+    for (i in this) {
+        if (i.isDigit()) {
             builder.append(i)
         }
     }
     return builder.toString().toInt()
+}
+
+fun String.getCardNumber(): String {
+    return "************".plus(this)
 }
 
 

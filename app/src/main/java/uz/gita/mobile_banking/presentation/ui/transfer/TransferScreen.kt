@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.github.razir.progressbutton.hideProgress
+import com.github.razir.progressbutton.showProgress
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.debounce
@@ -39,7 +41,13 @@ class TransferScreen : Fragment(R.layout.screen_transfer) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) = viewBinding.include {
 
         viewModel.loadingSharedFlow.onEach {
-            if (it) showProgress() else hideProgress()
+            if (it) {
+                btnTransfer.showProgress {
+                    buttonTextRes = R.string.next
+                }
+            } else {
+                btnTransfer.hideProgress()
+            }
         }.launchIn(lifecycleScope)
 
         viewModel.messageSharedFlow.onEach {
