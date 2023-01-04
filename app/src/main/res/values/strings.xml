@@ -59,4 +59,5 @@
     <string name="saved_payment">Add to Saved Payments</string>
     <string name="code_resend">Resend code</string>
     <string name="exchanges">Exchanges</string>
+    <string name="monitoring">Monitoring</string>
 </resources>

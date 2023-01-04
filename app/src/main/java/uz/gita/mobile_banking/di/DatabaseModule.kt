@@ -17,6 +17,7 @@ import uz.gita.mobile_banking.BuildConfig
 import uz.gita.mobile_banking.data.local.prefs.MySharedPrefs
 import uz.gita.mobile_banking.data.remote.api.*
 import uz.gita.mobile_banking.data.remote.authenticator.TokenAuthenticator
+import uz.gita.mobile_banking.domain.source.PagingSourceData
 import java.util.concurrent.TimeUnit
 import javax.inject.Named
 import javax.inject.Singleton
@@ -115,6 +116,10 @@ object DatabaseModule {
     @[Provides Singleton]
     fun provideExchangeApi(@Named("exchange") retrofit: Retrofit): ExchangeApi =
         retrofit.create(ExchangeApi::class.java)
+
+    @[Provides Singleton]
+    fun providePagingSource(api: TransferApi, gson: Gson): PagingSourceData =
+        PagingSourceData(api, gson)
 
 
 }

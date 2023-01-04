@@ -47,6 +47,7 @@ android {
 ext {
     nav_version = "2.5.3"
     retrofit_version = "2.9.0"
+    paging_version = "3.1.1"
 }
 
 dependencies {
@@ -117,4 +118,6 @@ dependencies {
     implementation 'io.github.chaosleung:pinview:1.4.4'
 
     implementation 'com.github.sparrow007:carouselrecyclerview:1.2.5'
+
+    implementation "androidx.paging:paging-runtime:$paging_version"
 }

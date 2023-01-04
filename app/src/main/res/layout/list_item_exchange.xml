@@ -27,6 +27,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:padding="4dp"
+        android:layout_marginEnd="@dimen/margin_small"
         android:src="@drawable/ic_down"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/tv_rate"

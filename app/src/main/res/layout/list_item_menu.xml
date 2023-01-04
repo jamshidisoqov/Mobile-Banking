@@ -29,6 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_std"
             android:text="@string/payment"
+            android:textAlignment="center"
             android:textColor="@color/black" />
     </LinearLayout>
 
