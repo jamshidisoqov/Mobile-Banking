@@ -41,4 +41,11 @@ fun String.getCardNumber(): String {
     return "************".plus(this)
 }
 
+fun String.getOrderString(): String {
+    val builder = StringBuilder()
+    builder.append(this[0])
+    builder.append(this.substring(1).lowercase())
+    return builder.toString()
+}
+
 

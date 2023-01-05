@@ -24,7 +24,7 @@ class AccountScreenDirectionImpl @Inject constructor(
     }
 
     override suspend fun navigateToPayment() {
-
+        navigator.navigateTo(HomeScreenDirections.actionHomeScreenToPaymentsScreen())
     }
 
     override suspend fun navigateToSend() {

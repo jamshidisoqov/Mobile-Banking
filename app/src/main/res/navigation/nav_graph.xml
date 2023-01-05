@@ -49,6 +49,9 @@
         <action
             android:id="@+id/action_homeScreen_to_cardDetailsScreen"
             app:destination="@id/cardDetailsScreen" />
+        <action
+            android:id="@+id/action_homeScreen_to_paymentsScreen"
+            app:destination="@id/paymentsScreen" />
     </fragment>
     <fragment
         android:id="@+id/loginScreen"
@@ -152,4 +155,9 @@
             android:name="card_data"
             app:argType="uz.gita.mobile_banking.data.remote.response.card.CardData" />
     </fragment>
+    <fragment
+        android:id="@+id/paymentsScreen"
+        tools:layout="@layout/screen_payments"
+        android:name="uz.gita.mobile_banking.presentation.ui.payment.PaymentsScreen"
+        android:label="PaymentsScreen" />
 </navigation>
