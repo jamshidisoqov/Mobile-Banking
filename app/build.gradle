@@ -81,7 +81,7 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
 
     // Gson
-    implementation 'com.google.code.gson:gson:2.9.1'
+    implementation 'com.google.code.gson:gson:2.10'
 
     //Timber
     implementation 'com.jakewharton.timber:timber:5.0.1'
@@ -122,4 +122,6 @@ dependencies {
     implementation "androidx.paging:paging-runtime:$paging_version"
 
     implementation 'com.github.razir.progressbutton:progressbutton:2.1.0'
+
+    implementation 'com.github.AnyChart:AnyChart-Android:1.1.2'
 }
