@@ -24,7 +24,7 @@ class HomeScreen : Fragment(R.layout.screen_home) {
             val pos = when (it.itemId) {
                 R.id.menu_account -> 0
                 R.id.menu_statistics -> 1
-                R.id.menu_cashback -> 2
+                R.id.menu_chat -> 2
                 else -> 3
             }
             pagerHome.setCurrentItem(pos, true)

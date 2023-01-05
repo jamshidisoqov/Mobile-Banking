@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import uz.gita.mobile_banking.presentation.ui.home.pages.accounts.AccountsScreen
-import uz.gita.mobile_banking.presentation.ui.home.pages.cashbacks.CashbackScreen
+import uz.gita.mobile_banking.presentation.ui.home.pages.chat.ChatScreen
 import uz.gita.mobile_banking.presentation.ui.home.pages.settings.SettingsScreen
 import uz.gita.mobile_banking.presentation.ui.home.pages.statistics.StatisticsScreen
 
@@ -16,7 +16,7 @@ class HomePagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
         when (position) {
             0 -> AccountsScreen()
             2 -> StatisticsScreen()
-            3 -> CashbackScreen()
+            3 -> ChatScreen()
             else -> SettingsScreen()
         }
 }

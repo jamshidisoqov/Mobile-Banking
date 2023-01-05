@@ -60,4 +60,5 @@
     <string name="code_resend">Resend code</string>
     <string name="exchanges">Exchanges</string>
     <string name="monitoring">Monitoring</string>
+    <string name="chat">Chat</string>
 </resources>

@@ -12,9 +12,9 @@
         android:title="@string/statistics" />
 
     <item
-        android:id="@+id/menu_cashback"
-        android:icon="@drawable/ic_cashback"
-        android:title="@string/cashback" />
+        android:id="@+id/menu_chat"
+        android:icon="@drawable/ic_chat"
+        android:title="@string/chat" />
 
     <item
         android:id="@+id/menu_settings"

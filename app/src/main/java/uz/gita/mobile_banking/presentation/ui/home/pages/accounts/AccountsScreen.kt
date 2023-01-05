@@ -1,20 +1,17 @@
 package uz.gita.mobile_banking.presentation.ui.home.pages.accounts
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.jackandphantom.carouselrecyclerview.CarouselLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import ru.ldralighieri.corbind.view.clicks
 import uz.gita.mobile_banking.R
-import uz.gita.mobile_banking.databinding.ScreenAccountsBinding
+import uz.gita.mobile_banking.databinding.PageAccountsBinding
 import uz.gita.mobile_banking.presentation.presenter.AccountScreenViewModelImpl
 import uz.gita.mobile_banking.presentation.ui.home.pages.accounts.adapter.CardAdapter
 import uz.gita.mobile_banking.presentation.ui.home.pages.accounts.adapter.LastTransfersAdapter
@@ -23,9 +20,9 @@ import uz.gita.mobile_banking.utils.*
 
 // Created by Jamshid Isoqov on 12/24/2022
 @AndroidEntryPoint
-class AccountsScreen : Fragment(R.layout.screen_accounts) {
+class AccountsScreen : Fragment(R.layout.page_accounts) {
 
-    private val viewBinding: ScreenAccountsBinding by viewBinding()
+    private val viewBinding: PageAccountsBinding by viewBinding()
 
     private val viewModel: AccountScreenViewModel by viewModels<AccountScreenViewModelImpl>()
 
@@ -74,7 +71,7 @@ class AccountsScreen : Fragment(R.layout.screen_accounts) {
 
         viewModel.openMoreDialog.onEach {
             val dialog = MenuDialog()
-            dialog.show(childFragmentManager,"menu dialog")
+            dialog.show(childFragmentManager, "menu dialog")
         }.launchIn(lifecycleScope)
 
         viewModel.lastTransactions.onEach {
