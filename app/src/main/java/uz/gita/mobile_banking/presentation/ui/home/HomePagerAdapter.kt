@@ -15,8 +15,8 @@ class HomePagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
     override fun createFragment(position: Int): Fragment =
         when (position) {
             0 -> AccountsScreen()
-            2 -> StatisticsScreen()
-            3 -> ChatScreen()
+            1 -> StatisticsScreen()
+            2 -> ChatScreen()
             else -> SettingsScreen()
         }
 }

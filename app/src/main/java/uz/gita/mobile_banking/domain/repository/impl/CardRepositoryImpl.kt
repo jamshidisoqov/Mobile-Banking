@@ -3,6 +3,7 @@ package uz.gita.mobile_banking.domain.repository.impl
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import uz.gita.mobile_banking.data.remote.api.CardApi
@@ -22,7 +23,7 @@ class CardRepositoryImpl @Inject constructor(
     override fun getAllCards(): Flow<ResultData<List<CardData>>> =
         flow {
             emit(cardApi.getAllCards().func(gson))
-        }.flowOn(Dispatchers.IO)
+        }.catch { error -> emit(ResultData.Error(error))}.flowOn(Dispatchers.IO)
 
     override fun addCard(cardDto: CardDto): Flow<ResultData<MessageData>> =
         flow {

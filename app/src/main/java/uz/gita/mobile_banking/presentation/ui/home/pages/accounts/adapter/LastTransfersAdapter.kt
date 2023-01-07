@@ -7,8 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import uz.gita.mobile_banking.R
 import uz.gita.mobile_banking.data.remote.response.user.LastTransferData
 import uz.gita.mobile_banking.databinding.ListItemLastTransfersBinding
+import uz.gita.mobile_banking.utils.combine
 import uz.gita.mobile_banking.utils.include
 import uz.gita.mobile_banking.utils.inflate
+import uz.gita.mobile_banking.utils.maskWatcher
 
 // Created by Jamshid Isoqov on 12/28/2022
 
@@ -42,8 +44,9 @@ class LastTransfersAdapter :
 
         fun onBind() = binding.include {
             val data = getItem(absoluteAdapterPosition)
-            tvTransferWhere.text = data.to
+            tvTransferWhere.text = data.to.maskWatcher(4,' ')
             tvType.text = data.type
+            tvAmount.text = data.amount.toString().maskWatcher(3,' ').combine("sum")
         }
     }
 

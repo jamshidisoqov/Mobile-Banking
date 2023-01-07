@@ -8,9 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import uz.gita.mobile_banking.R
 import uz.gita.mobile_banking.data.remote.response.card.CardData
 import uz.gita.mobile_banking.databinding.ListItemCardsBinding
-import uz.gita.mobile_banking.utils.getFinanceType
-import uz.gita.mobile_banking.utils.include
-import uz.gita.mobile_banking.utils.inflate
+import uz.gita.mobile_banking.utils.*
 
 // Created by Jamshid Isoqov on 12/28/2022
 
@@ -56,7 +54,7 @@ class CardAdapter : ListAdapter<CardData, CardAdapter.ViewHolder>(cardItemCallba
              val data = getItem(absoluteAdapterPosition)
              tvCardNumber.text = data.name
              tvCardExpireDate.text = "${data.expiredMonth}/${data.expiredYear}"
-             tvBalance.text = data.amount.toDouble().getFinanceType()
+             tvBalance.text = data.amount.toString().maskWatcher(3).combine("sum")
 
         }
     }

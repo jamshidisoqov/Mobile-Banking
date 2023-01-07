@@ -40,6 +40,12 @@ class AccountsScreen : Fragment(R.layout.page_accounts) {
 
         listLastTransfers.adapter = lastTransfersAdapter
 
+        root.setOnRefreshListener {
+            getData()
+            errorCardsContainer.gone()
+            root.isRefreshing = false
+        }
+
         viewModel.loadingSharedFlow.onEach {
             if (it) {
                 shimmerFrame.shimmerFrameHome.apply {
@@ -63,6 +69,15 @@ class AccountsScreen : Fragment(R.layout.page_accounts) {
 
         viewModel.errorSharedFlow.onEach {
             showErrorDialog(it)
+        }.launchIn(lifecycleScope)
+
+        viewModel.errorCardsMessage.onEach {
+            tvRefreshCards.text = it
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
+
+        imageRefreshCards.clicks().onEach {
+            errorCardsContainer.gone()
+            viewModel.getCards()
         }.launchIn(lifecycleScope)
 
         viewModel.cardsList.onEach {
@@ -111,6 +126,10 @@ class AccountsScreen : Fragment(R.layout.page_accounts) {
         lastTransfersAdapter.setItemClickListener {
             viewModel.navigateToLastTransfersDetail(it)
         }
+        getData()
+    }
+
+    private fun getData() {
         viewModel.getCards()
 
         viewModel.getLastTransfers()

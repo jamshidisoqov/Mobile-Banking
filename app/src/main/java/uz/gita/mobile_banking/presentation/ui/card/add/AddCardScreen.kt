@@ -70,9 +70,12 @@ class AddCardScreen : Fragment(R.layout.screen_add_card) {
             check()
         }.launchIn(viewLifecycleOwner.lifecycleScope)
 
+
         inputExpireDate.clicks().onEach {
             showChooseDate()
         }.launchIn(lifecycleScope)
+
+
         btnAddCard.clicks()
             .onEach {
                 val date = Date(bornDate)

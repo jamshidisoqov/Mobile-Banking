@@ -48,4 +48,12 @@ fun String.getOrderString(): String {
     return builder.toString()
 }
 
+//mask watcher with separator
+fun String.maskWatcher(size: Int, separator: Char = ' '): String {
+    val builder = StringBuilder(this.reversed())
+    val formatterString = StringBuilder()
+    builder.chunked(size).forEach { formatterString.append(it.plus(separator)) }
+    return formatterString.reversed().toString().trim(separator)
+}
+
 

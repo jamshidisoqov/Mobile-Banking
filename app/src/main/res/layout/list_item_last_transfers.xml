@@ -6,16 +6,6 @@
     android:layout_height="wrap_content"
     android:paddingVertical="@dimen/margin_std">
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/image_transfer"
-        android:layout_width="44dp"
-        android:layout_height="44dp"
-        android:src="@drawable/man"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearanceOverlay="@style/CircleImageView" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_transfer_where"
@@ -25,7 +15,7 @@
         android:textColor="@color/black"
         android:textSize="17sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@id/image_transfer"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Netflix" />
 
@@ -37,4 +27,20 @@
         app:layout_constraintStart_toStartOf="@id/tv_transfer_where"
         app:layout_constraintTop_toBottomOf="@id/tv_transfer_where"
         tools:text="Entertainment" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@color/error_bg_color"
+        android:textStyle="bold"
+        android:layout_marginEnd="@dimen/margin_component"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="-12 000 sum" />
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

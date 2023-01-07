@@ -16,8 +16,6 @@ class PagingSourceData @Inject constructor(
     private val gson: Gson
 ) : PagingSource<Int, TransferData>() {
 
-    val pageData = MutableSharedFlow<ResultData<TransferData>>()
-
     private var pageSize = 10
 
     override fun getRefreshKey(state: PagingState<Int, TransferData>): Int? =
@@ -29,7 +27,7 @@ class PagingSourceData @Inject constructor(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, TransferData> {
         val page = params.key ?: 1
         pageSize = params.loadSize
-        val response = api.getTransfers(page, pageSize)
+        val response = api.getTransfers(pageSize, page)
         var transfers = emptyList<TransferData>()
         response.func(gson)
             .onSuccess {

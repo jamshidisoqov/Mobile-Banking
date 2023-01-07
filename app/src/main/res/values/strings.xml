@@ -26,7 +26,8 @@
     <string name="expired_date">Expired date</string>
     <string name="card_name">Card name</string>
     <string name="name">Name</string>
-    <string name="default_card_number">0000000000000000</string>
+    <string name="default_card_number">0000 0000 0000 0000</string>
+    <string name="default_card_number_trim">0000000000000000</string>
     <string name="default_date">01/23</string>
     <string name="submit">Submit</string>
     <string name="transfer_money">Transfer money</string>

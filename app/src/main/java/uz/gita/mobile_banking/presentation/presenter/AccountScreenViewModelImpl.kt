@@ -35,6 +35,8 @@ class AccountScreenViewModelImpl @Inject constructor(
 
     override val lastTransactions = MutableStateFlow<List<LastTransferData>>(emptyList())
 
+    override val errorCardsMessage = MutableSharedFlow<String>()
+
     override val openMoreDialog = MutableSharedFlow<Unit>()
 
 
@@ -47,9 +49,9 @@ class AccountScreenViewModelImpl @Inject constructor(
                     result.onSuccess {
                         cardsList.emit(it)
                     }.onMessage {
-                        messageSharedFlow.emit(it)
+                        errorCardsMessage.emit(it)
                     }.onError {
-                        errorSharedFlow.emit(it.getMessage())
+                        errorCardsMessage.emit(it.getMessage())
                     }
                 }
             } else {

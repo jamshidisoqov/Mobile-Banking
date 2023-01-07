@@ -3,6 +3,7 @@ package uz.gita.mobile_banking.domain.repository.impl
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import uz.gita.mobile_banking.data.remote.api.UserApi
@@ -37,5 +38,5 @@ class UserRepositoryImpl @Inject constructor(
     override fun getAllLastTransfers(): Flow<ResultData<List<LastTransferData>>> =
         flow {
             emit(userApi.getAllLastTransfers().func(gson))
-        }.flowOn(Dispatchers.IO)
+        }.catch { error -> emit(ResultData.Error(error))}.flowOn(Dispatchers.IO)
 }

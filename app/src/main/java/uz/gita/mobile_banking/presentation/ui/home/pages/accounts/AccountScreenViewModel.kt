@@ -14,6 +14,8 @@ interface AccountScreenViewModel : BaseViewModel {
 
     val lastTransactions:StateFlow<List<LastTransferData>>
 
+    val errorCardsMessage:SharedFlow<String>
+
     val openMoreDialog:SharedFlow<Unit>
 
     fun getCards()

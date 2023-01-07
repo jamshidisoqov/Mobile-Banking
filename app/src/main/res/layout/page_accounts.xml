@@ -1,218 +1,263 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/container_home"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="visible">
-
-        <RelativeLayout
-            android:id="@+id/action_bar_container"
-            android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="@dimen/margin_large"
-                android:text="@string/my_accounts"
-                android:textColor="@color/black"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                tools:ignore="RelativeOverlap" />
-
-            <ImageView
-                android:id="@+id/image_notification"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="@dimen/margin_std"
-                android:padding="@dimen/margin_std"
-                android:src="@drawable/ic_notification"
-                tools:ignore="ContentDescription" />
-
-        </RelativeLayout>
-
-        <com.jackandphantom.carouselrecyclerview.CarouselRecyclerview
-            android:id="@+id/list_cards"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/action_bar_container"
-            tools:listitem="@layout/list_item_cards" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card_add_card"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:layout_margin="@dimen/margin_component"
-            app:cardCornerRadius="32dp"
-            app:layout_constraintEnd_toStartOf="@id/card_pay"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/list_cards">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="20dp"
-                android:src="@drawable/ic_card" />
-
-        </androidx.cardview.widget.CardView>
-
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_std"
-            android:text="@string/add_card"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="@id/card_add_card"
-            app:layout_constraintStart_toStartOf="@id/card_add_card"
-            app:layout_constraintTop_toBottomOf="@id/card_add_card" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card_pay"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:layout_margin="@dimen/margin_component"
-            app:cardCornerRadius="32dp"
-            app:layout_constraintEnd_toStartOf="@id/card_transfer"
-            app:layout_constraintStart_toEndOf="@id/card_add_card"
-            app:layout_constraintTop_toBottomOf="@id/list_cards">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="20dp"
-                android:src="@drawable/ic_payment" />
-
-        </androidx.cardview.widget.CardView>
-
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_std"
-            android:text="@string/payment"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="@id/card_pay"
-            app:layout_constraintStart_toStartOf="@id/card_pay"
-            app:layout_constraintTop_toBottomOf="@id/card_pay" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card_transfer"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:layout_margin="@dimen/margin_component"
-            app:cardCornerRadius="32dp"
-            app:layout_constraintEnd_toStartOf="@id/card_more"
-            app:layout_constraintStart_toEndOf="@id/card_pay"
-            app:layout_constraintTop_toBottomOf="@id/list_cards">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="20dp"
-                android:src="@drawable/ic_send" />
-
-        </androidx.cardview.widget.CardView>
-
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_std"
-            android:text="@string/send"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="@id/card_transfer"
-            app:layout_constraintStart_toStartOf="@id/card_transfer"
-            app:layout_constraintTop_toBottomOf="@id/card_transfer" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card_more"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:layout_margin="@dimen/margin_component"
-            app:cardCornerRadius="32dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/card_transfer"
-            app:layout_constraintTop_toBottomOf="@id/list_cards">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="20dp"
-                android:src="@drawable/ic_more" />
-
-        </androidx.cardview.widget.CardView>
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_more"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_std"
-            android:text="@string/more"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="@id/card_more"
-            app:layout_constraintStart_toStartOf="@id/card_more"
-            app:layout_constraintTop_toBottomOf="@id/card_more" />
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container_home"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="@dimen/margin_component"
-            android:background="@drawable/bg_bottom_nav"
-            android:padding="@dimen/margin_component"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_more">
+            android:layout_height="match_parent"
+            android:visibility="invisible">
+
+            <RelativeLayout
+                android:id="@+id/action_bar_container"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/margin_large"
+                    android:text="@string/my_accounts"
+                    android:textColor="@color/black"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    tools:ignore="RelativeOverlap" />
+
+                <ImageView
+                    android:id="@+id/image_notification"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/margin_std"
+                    android:padding="@dimen/margin_std"
+                    android:src="@drawable/ic_notification"
+                    tools:ignore="ContentDescription" />
+
+            </RelativeLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/error_cards_container"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/action_bar_container">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/image_refresh_cards"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginBottom="@dimen/margin_std"
+                    android:src="@drawable/ic_refresh"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/tv_refresh_cards"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_refresh_cards"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/image_refresh_cards" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.jackandphantom.carouselrecyclerview.CarouselRecyclerview
+                android:id="@+id/list_cards"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/action_bar_container"
+                tools:listitem="@layout/list_item_cards" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_add_card"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_margin="@dimen/margin_component"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardCornerRadius="32dp"
+                app:layout_constraintEnd_toStartOf="@id/card_pay"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/list_cards">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="20dp"
+                    android:src="@drawable/ic_card" />
+
+            </androidx.cardview.widget.CardView>
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/_tv_recent_transfers"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_std"
-                android:text="@string/recent_transactions"
+                android:text="@string/add_card"
                 android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintEnd_toEndOf="@id/card_add_card"
+                app:layout_constraintStart_toStartOf="@id/card_add_card"
+                app:layout_constraintTop_toBottomOf="@id/card_add_card" />
 
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_pay"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_margin="@dimen/margin_component"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardCornerRadius="32dp"
+                app:layout_constraintEnd_toStartOf="@id/card_transfer"
+                app:layout_constraintStart_toEndOf="@id/card_add_card"
+                app:layout_constraintTop_toBottomOf="@id/list_cards">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/image_search"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:padding="@dimen/margin_std"
-                android:src="@drawable/ic_search"
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="20dp"
+                    android:src="@drawable/ic_payment" />
+
+            </androidx.cardview.widget.CardView>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_std"
+                android:text="@string/payment"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="@id/card_pay"
+                app:layout_constraintStart_toStartOf="@id/card_pay"
+                app:layout_constraintTop_toBottomOf="@id/card_pay" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_transfer"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_margin="@dimen/margin_component"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardCornerRadius="32dp"
+                app:layout_constraintEnd_toStartOf="@id/card_more"
+                app:layout_constraintStart_toEndOf="@id/card_pay"
+                app:layout_constraintTop_toBottomOf="@id/list_cards">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="20dp"
+                    android:src="@drawable/ic_send" />
+
+            </androidx.cardview.widget.CardView>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_std"
+                android:text="@string/send"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="@id/card_transfer"
+                app:layout_constraintStart_toStartOf="@id/card_transfer"
+                app:layout_constraintTop_toBottomOf="@id/card_transfer" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_more"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_margin="@dimen/margin_component"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardCornerRadius="32dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toEndOf="@id/card_transfer"
+                app:layout_constraintTop_toBottomOf="@id/list_cards">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/list_last_transfers"
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="20dp"
+                    android:src="@drawable/ic_more" />
+
+            </androidx.cardview.widget.CardView>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_std"
+                android:text="@string/more"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="@id/card_more"
+                app:layout_constraintStart_toStartOf="@id/card_more"
+                app:layout_constraintTop_toBottomOf="@id/card_more" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:orientation="vertical"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:layout_marginTop="@dimen/margin_component"
+                android:background="@drawable/bg_bottom_nav"
+                android:padding="@dimen/margin_component"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/image_search"
-                tools:listitem="@layout/list_item_last_transfers" />
+                app:layout_constraintTop_toBottomOf="@id/tv_more">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/_tv_recent_transfers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_std"
+                    android:text="@string/recent_transactions"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/image_search"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="@dimen/margin_std"
+                    android:src="@drawable/ic_search"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/list_last_transfers"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/image_search"
+                    tools:listitem="@layout/list_item_last_transfers" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <include
+            android:id="@+id/shimmer_frame"
+            layout="@layout/screen_accounts_shimmer" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <include
-        android:id="@+id/shimmer_frame"
-        layout="@layout/screen_accounts_shimmer" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
